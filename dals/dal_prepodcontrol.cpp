@@ -96,6 +96,23 @@ QSqlQueryModel *Dal_prepodcontrol::getcomboKafedry()
     return model;
 }
 
+QSqlQueryModel *Dal_prepodcontrol::getPlanUmr(QString goda)
+{
+    QString query = "";
+    QSqlQueryModel *PlanUmrmodel = new QSqlQueryModel(this);
+    query = "SELECT * FROM planumr_view where 1=1";
+    if(goda!="")
+        query.append(" and god = " + goda);
+    PlanUmrmodel->setQuery(query);
+    PlanUmrmodel->setHeaderData(1,Qt::Horizontal,tr("ФИО авторов"));
+    PlanUmrmodel->setHeaderData(2,Qt::Horizontal,tr("Наименование\n учебно-методических\n работ с указанием направления"));
+    PlanUmrmodel->setHeaderData(3,Qt::Horizontal,tr("Аннотация"));
+    PlanUmrmodel->setHeaderData(4,Qt::Horizontal,tr("Объем в учеб.\n-изд. листах"));
+    PlanUmrmodel->setHeaderData(5,Qt::Horizontal,tr("Тираж"));
+    PlanUmrmodel->setHeaderData(6,Qt::Horizontal,tr("Срок пред-ния\n в ОП ИЦ «Техник»"));
+    return PlanUmrmodel;
+}
+
 QSqlQueryModel *Dal_prepodcontrol::getComboSoAvtor(int id_avt)
 {
     QSqlQueryModel static *comboAvtorModel = new QSqlQueryModel(this);
@@ -138,6 +155,31 @@ bool Dal_prepodcontrol::getStatiaAdd(int avtors_id, int soAvtors_id, QString tem
         return true;
     }
 
+}
+
+bool Dal_prepodcontrol::addPlanUMR(QString ispoln, QString UMR, QString anotac, double kolvoStr, int tiraj, QString srokIspoln, QString gods)
+{
+    qDebug()<<"ispol"<<ispoln<<"UMR"<<UMR<<anotac<<kolvoStr<<tiraj<<srokIspoln<<gods;
+    QSqlQuery *query = new QSqlQuery;
+
+    query->prepare("insert into is_planumr (naimMetRabISpec, anotacia, kolvoListov, tiraj, srokPredostavlOPiC, god, sotrudFio)\
+                                               values (:UMR, :anotac, :kolvoStr, :tiraj, :srokIspoln, :gods , :ispoln)");
+                   query->bindValue(":UMR", UMR);
+            query->bindValue(":anotac", anotac);
+    query->bindValue(":kolvoStr", kolvoStr);
+    query->bindValue(":tiraj", tiraj);
+    query->bindValue(":srokIspoln", srokIspoln);
+    query->bindValue(":gods", gods);
+    query->bindValue(":ispoln", ispoln);
+    query->exec();
+    if (! query->isActive())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 bool Dal_prepodcontrol::PublicationNirAdd(int pub_id, QString nameF, QString Urlf, QString MejStandartNomer, QString NazvaniePublikacii, QString NazvanieJurnala, QString NomerVipuskaJurnala, QDate GodVipuska)
@@ -322,6 +364,20 @@ QSqlQuery *Dal_prepodcontrol::getCurrentPublication(int id_publ)
     return query;
 }
 
+QSqlQuery *Dal_prepodcontrol::getCurrentplanUmr(int zap_id)
+{
+    QSqlQuery *query = new QSqlQuery;
+    query->prepare("select * from planumr_view where id_planUMR = :zap_id");
+    query->bindValue(":zap_id", zap_id);
+    query->exec();
+    if (! query->isActive())
+    {
+        return NULL;
+    }
+    query->first();
+    return query;
+}
+
 QSqlQuery *Dal_prepodcontrol::getCurrentMetodichka(int id_metodichka)
 {
     QSqlQuery *query = new QSqlQuery;
@@ -384,6 +440,35 @@ bool Dal_prepodcontrol::editStat(int id_stat, int statAvtor_id, int statSoAvtor_
     }
     else
         return true;
+
+}
+
+bool Dal_prepodcontrol::EditPlanUMR(int id_zap, QString ispoln, QString UMR, QString anotac, double kolvoStr, int tiraj, QString srokIspoln, QString gods)
+{
+    QSqlQuery q;
+    if(ispoln!="")
+    {
+    q.prepare("UPDATE is_planumr SET naimMetRabISpec = :UMR, anotacia = :anotac,kolvoListov = :kolvoStr, tiraj = :tiraj, srokPredostavlOPiC = :srokIspoln, god = :gods, sotrudFio = :ispoln WHERE id_planUMR = " + QString::number(id_zap));
+    q.bindValue(":UMR", UMR);
+    q.bindValue(":anotac", anotac);
+    q.bindValue(":kolvoStr", kolvoStr);
+    q.bindValue(":tiraj", tiraj);
+    q.bindValue(":srokIspoln", srokIspoln);
+    q.bindValue(":gods", gods);
+    q.bindValue(":ispoln", ispoln);
+    return q.exec();
+    }
+    else
+    {
+        q.prepare("UPDATE is_planumr SET naimMetRabISpec = :UMR, anotacia = :anotac,kolvoListov = :kolvoStr, tiraj = :tiraj, srokPredostavlOPiC = :srokIspoln, god = :gods WHERE id_planUMR = " + QString::number(id_zap));
+        q.bindValue(":UMR", UMR);
+        q.bindValue(":anotac", anotac);
+        q.bindValue(":kolvoStr", kolvoStr);
+        q.bindValue(":tiraj", tiraj);
+        q.bindValue(":srokIspoln", srokIspoln);
+        q.bindValue(":gods", gods);
+        return q.exec();
+    }
 
 }
 
@@ -472,6 +557,22 @@ bool Dal_prepodcontrol::deleteSotr(int sotr_id)
     QSqlQuery query;
     query.prepare("delete from is_sotrudniki where id_sotr = :sotr_id");
     query.bindValue(":sotr_id", sotr_id);
+    query.exec();
+    if (! query.isActive())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool Dal_prepodcontrol::deleteZapPlanUmr(int id_zap)
+{
+    QSqlQuery query;
+    query.prepare("delete from is_planumr where id_planumr = :id_zap");
+    query.bindValue(":id_zap", id_zap);
     query.exec();
     if (! query.isActive())
     {

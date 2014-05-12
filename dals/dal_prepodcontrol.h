@@ -16,8 +16,10 @@ public:
     QSqlQueryModel *getcomboPredm();
     QSqlQueryModel *getcomboSemmestr();
     QSqlQueryModel *getcomboKafedry();
+    QSqlQueryModel *getPlanUmr(QString goda);
     QSqlQueryModel *getComboSoAvtor(int id_avt);
     bool getStatiaAdd(int avtors_id, int soAvtors_id, QString temas, QDate dates);
+    bool addPlanUMR(QString ispoln, QString UMR, QString anotac, double kolvoStr, int tiraj, QString srokIspoln, QString gods);
     bool PublicationNirAdd(int pub_id, QString nameF, QString Urlf, QString MejStandartNomer, QString NazvaniePublikacii, QString NazvanieJurnala, QString NomerVipuskaJurnala, QDate GodVipuska);
     bool sostavKomAdd(int pred, int secr, int ch1, int ch2, int ch3, int ch4, int ch5, QDate dates, int nomerRaporta);
     bool SotrudnikAdd(QString FIO, QString telephon, QString mails, QString obrazovanie, int staj_obsh, int stajVKGTU, int ped_staj, QString uchZvan, int dolj, double stavka, QString logins, QString passw, QDate dateRojd, QDate dateReg, int status, QString MestoRojd, QString mestoRaboti, QString nacion, QString SeriaPasport, QString addres, QString semPoloj, QString socZash, int OnlyGak, QString sostav);
@@ -27,12 +29,15 @@ public:
     QSqlQuery *getCurrentSotrudnik(int rec_id);
     QSqlQuery *getCurrentDiscipline(int id_discipline);
     QSqlQuery *getCurrentPublication(int id_publ);
+    QSqlQuery *getCurrentplanUmr(int zap_id);
     bool editStat (int id_stat, int statAvtor_id, int statSoAvtor_id, QString stat_tema, QDate stat_date);
+    bool EditPlanUMR(int id_zap,QString ispoln, QString UMR, QString anotac, double kolvoStr, int tiraj, QString srokIspoln, QString gods);
     bool editSubWork (int subwork_id,int predm,int semes, QDate dates, int prepod);
     bool editParolSotr (int recor_id,QString newParol);
     QSqlQueryModel *getSubjWork(QString FIO, QString discipl);
     bool deleteSubWork (int subWork_id);
     bool deleteSotr(int sotr_id);
+    bool deleteZapPlanUmr(int id_zap);
     QSqlQueryModel *getMetodichki(int id_discipline);
     QSqlQueryModel *getMetodichka(int discipl, int type_met);
     QSqlQueryModel *getKnigi(int id_discipline);

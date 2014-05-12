@@ -50,6 +50,11 @@ MainWindow::MainWindow(QWidget *parent) :
     w->setWindowFlags(Qt::Dialog | Qt::Desktop);
     w->exec();
 
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
+    timer->start(1000);
+    showTime();
+
     QPixmap pixmap(":/img/img/pocs2.png");
     QSplashScreen *splash = new QSplashScreen(pixmap);
     QFont splashFont;
@@ -169,6 +174,16 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showTime()
+{
+    QTime time = QTime::currentTime();
+       QString text = time.toString("hh:mm");
+   if ((time.second() % 2) == 0)
+       text[2] = ' ';
+    ui->lcdNumber->display(text);
+
 }
 
 void MainWindow::openPorucheniya()
@@ -1768,5 +1783,22 @@ void MainWindow::on_action_otchet_spravki_pochas_triggered()
     }
     ui->mdiArea->addSubWindow(form);
     form->showMaximized();
+    on_pushButton_hide_clicked();
+}
+
+
+void MainWindow::on_action_PlanUmr_triggered()
+{
+    PlanUMR *PlanUMRform;
+    try
+    {
+        PlanUMRform = new PlanUMR(this);
+    }
+    catch(...)
+    {
+        return;
+    }
+    ui->mdiArea->addSubWindow(PlanUMRform);
+    PlanUMRform->showMaximized();
     on_pushButton_hide_clicked();
 }

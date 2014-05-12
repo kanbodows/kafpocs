@@ -87,7 +87,7 @@
 #include "platnieobrazovatuslgi.h"
 #include "reports/otchetspravkipochas.h"
 #include "uvedomlenie.h"
-
+#include "planumr.h"
 namespace Ui {
 class MainWindow;
 }
@@ -101,6 +101,9 @@ public:
     ~MainWindow();
     void openPorucheniya();
     void openProsmotr();
+
+public slots:
+  void showTime();
 private slots:
     //   void on_action_triggered();
 
@@ -293,6 +296,8 @@ private slots:
     void on_action_ObuchKursi_triggered();
 
     void on_action_otchet_spravki_pochas_triggered();
+
+    void on_action_PlanUmr_triggered();
 
 private:
     Ui::MainWindow *ui;

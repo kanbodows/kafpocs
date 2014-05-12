@@ -153,7 +153,9 @@ SOURCES += main.cpp\
     reports/otchetspravkipochas.cpp \
     add_edit_forms/addoredit_gak_bally.cpp \
     delegates/spinboxdelegate.cpp \
-    reports/svodotchetgakbally.cpp
+    reports/svodotchetgakbally.cpp \
+    planumr.cpp \
+    add_edit_forms/addoreditplanumr.cpp
 
 HEADERS  += mainwindow.h \
     delegates/qlightboxwidget.h \
@@ -297,7 +299,9 @@ HEADERS  += mainwindow.h \
     reports/otchetspravkipochas.h \
     add_edit_forms/addoredit_gak_bally.h \
     delegates/spinboxdelegate.h \
-    reports/svodotchetgakbally.h
+    reports/svodotchetgakbally.h \
+    planumr.h \
+    add_edit_forms/addoreditplanumr.h
 
 FORMS    += mainwindow.ui \
     accessdb.ui \
@@ -419,7 +423,9 @@ FORMS    += mainwindow.ui \
     add_edit_forms/add_or_edit_platnieobrazovatkursi.ui \
     reports/otchetspravkipochas.ui \
     add_edit_forms/addoredit_gak_bally.ui \
-    reports/svodotchetgakbally.ui
+    reports/svodotchetgakbally.ui \
+    planumr.ui \
+    add_edit_forms/addoreditplanumr.ui
 
 
 RESOURCES += \

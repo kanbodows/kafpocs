@@ -108,21 +108,58 @@ void AddOrEditPlanZasKaf::on_pushButtonAddTableWidjet_clicked()
 
 
         QString list; //Список для имен
-      //  QString index; //Список для идентификаторов
+//        QString newName;
+//        QString d="";
+//        QString index = ""; //Список для идентификаторов
         QModelIndexList mlist = ui->listView_Ispoln->selectionModel()->selectedIndexes();
-      //   QSqlQueryModel *mod = (QSqlQueryModel*)ui->listView_Ispoln->model();//Получаем указатель на модель данных
-        for(int i = 0;i < mlist.count();i++){
+        QSqlQueryModel *mod = (QSqlQueryModel*)ui->listView_Ispoln->model();//Получаем указатель на модель данных
+
+//         QSqlQuery *query = new QSqlQuery;
+//         int a[100];
+
+        for(int i = 0;i < mlist.count();i++)
             //Получаем отображаемое имя
           {
                 list.append(mlist.at(i).data(Qt::DisplayRole).toString() + ";\n");
+//                newName = mlist.at(i).data(Qt::DisplayRole).toString();
+//                qDebug()<<"newname = "<<newName;
+//                if (! dal_main->checkConnection())
+//                {
+//                    QMessageBox::warning(this, tr("Ошибка подключения"), tr("Соединение не установлено"));
+//                    return;
+//                }
+
+//                query->prepare("select * from is_sotrudniki  where st_fio like '%" + newName + "%'  ");
+//                query->exec();
+//                query->first();
+//                ui->lineEdit->setText(query->value(0).toString());
+//                index.append(ui->lineEdit->text() + " ");
+
 
             }
+//qDebug()<<index;//"mlist"<<i<<mlist.at(i).data(Qt::DisplayRole).toString();
+
+//for(int i=0; i < index.count(); i++)
+//{
+//    if(index[i]>='0' && index[i]<='9')
+//    {
+//        a[i]=index[i].digitValue();
+//        while(index[i+1]!=' ')
+//        {
+//        i++;
+//        a[i]=index[i].digitValue();
+//        }
+//    }
+//    else
+//        continue;
+//    qDebug()<<"a[i]"<<a[i];
+//}
 
 
 
             //Обращаемся к записи в модели данных и получаем из нее идентификатор
-       //    index.append(mod->record(mlist.()).value("id_sotr").toString());
-        }
+         // index.append(mod->record(mlist.value("id_sotr").toString());
+
 
         this->ispolnit = list;
     }

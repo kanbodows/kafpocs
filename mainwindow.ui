@@ -86,6 +86,70 @@ font-style:bold;
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="2">
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::tab-bar {
+
+ }
+
+ QTabBar::tab {
+  background: gray;
+ /* background: rgb(161, 163, 255);*/
+  padding: 10px;
+font-size:12px;
+color:rgb(255, 255, 255);
+ }
+
+ QTabBar::tab:selected
+{
+ background: rgb(33, 0, 168);
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0.482955 rgba(39, 74, 157, 255), stop:1 rgba(126, 154, 255, 255));
+font-size:13px;
+color:white;
+font:bold;
+
+}
+ QTabBar::tab:hover {  
+	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 9, 140, 255), stop:0.494318 rgba(59, 70, 130, 255), stop:1 rgba(25, 0, 126, 255));
+ }
+QTabBar::close-button
+{
+ image: url(:/img/img/cancel.png) subcontrol-position: left; 
+} 
+
+QTabBar::close-button:hover
+ {
+ image:url(:/img/img/cancel.png);
+ }
+QTabBar::close-button {
+     image: url(:/img/img/cancel.png)
+     subcontrol-position: left;
+ }
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QMdiArea::TabbedView</enum>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="tabsMovable">
+       <bool>true</bool>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Triangular</enum>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_main">
       <property name="minimumSize">
@@ -660,70 +724,55 @@ QPushButton:hover{  background-color: rgba(0,0,0,0); border-image: url(:/img/img
         </size>
        </property>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QMdiArea" name="mdiArea">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QTabWidget::tab-bar {
-
- }
-
- QTabBar::tab {
-  background: gray;
- /* background: rgb(161, 163, 255);*/
-  padding: 10px;
-font-size:12px;
-color:rgb(255, 255, 255);
- }
-
- QTabBar::tab:selected
-{
- background: rgb(33, 0, 168);
-background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0.482955 rgba(39, 74, 157, 255), stop:1 rgba(126, 154, 255, 255));
-font-size:13px;
-color:white;
-font:bold;
-
-}
- QTabBar::tab:hover {  
-	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 9, 140, 255), stop:0.494318 rgba(59, 70, 130, 255), stop:1 rgba(25, 0, 126, 255));
- }
-QTabBar::close-button
-{
- image: url(:/img/img/cancel.png) subcontrol-position: left; 
-} 
-
-QTabBar::close-button:hover
- {
- image:url(:/img/img/cancel.png);
- }
-QTabBar::close-button {
-     image: url(:/img/img/cancel.png)
-     subcontrol-position: left;
- }
-</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="viewMode">
-       <enum>QMdiArea::TabbedView</enum>
-      </property>
-      <property name="tabsClosable">
-       <bool>true</bool>
-      </property>
-      <property name="tabsMovable">
-       <bool>true</bool>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Triangular</enum>
-      </property>
+      <widget class="QLCDNumber" name="lcdNumber">
+       <property name="geometry">
+        <rect>
+         <x>2</x>
+         <y>3</y>
+         <width>76</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>76</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> border: 1px solid white;color: #76EE00; background-color: #1C1C1C;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Filled</enum>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -818,6 +867,7 @@ QTabBar::close-button {
     <addaction name="action_spravki_pochas"/>
     <addaction name="action_ObuchKursi"/>
     <addaction name="action_vedomosti_kursovye"/>
+    <addaction name="action_PlanUmr"/>
    </widget>
    <widget class="QMenu" name="menu_6">
     <property name="title">
@@ -1233,6 +1283,11 @@ QTabBar::close-button {
   <action name="action_otchet_spravki_pochas">
    <property name="text">
     <string>Справка почасовой оплаты кафедры</string>
+   </property>
+  </action>
+  <action name="action_PlanUmr">
+   <property name="text">
+    <string>План издания УМР</string>
    </property>
   </action>
  </widget>
