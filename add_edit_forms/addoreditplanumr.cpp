@@ -177,3 +177,8 @@ void AddOrEditPlanUmr::on_checkBox_clicked(bool checked)
     else
         ui->listView_fio->setVisible(false);
 }
+
+void AddOrEditPlanUmr::on_pushButton_cancel_clicked()
+{
+    this->close();
+}
