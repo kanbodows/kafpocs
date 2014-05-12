@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1178</width>
+    <height>652</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Кафедра</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+
+
+
+
+
+QTabWidget::pane { /* The tab widget frame */
+     border-top: 2px solid #C2C7CB;
+ }
+
+
+ QTabWidget::tab-bar {
+     left: 5px; /* move to the right by 5px */
+ }
+
+ /* Style the tab using the tab sub-control. Note that
+     it reads QTabBar _not_ QTabWidget */
+ QTabBar::tab {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    /* border: 2px solid #C4C4C3;
+     border-bottom-color: #C2C7CB;
+     border-top-left-radius: 4px;
+     border-top-right-radius: 4px;*/
+     min-width: 8ex;
+     padding: 2px;
+font-style:bold;
+ }
+
+ QTabBar::tab:selected, QTabBar::tab:hover {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+                                 stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+ background: rgb(33, 0, 168);
+
+ }
+
+ QTabBar::tab:selected {
+     border-color: #9B9B9B;
+     border-bottom-color: #C2C7CB; /* same as pane color */
+ background: rgb(33, 0, 168);
+ }
+
+ QTabBar::tab:!selected {
+   /*   margin-top: 2px;/* make non-selected tabs look smaller */
+ }
+
+ /* make use of negative margins for overlapping tabs */
+ QTabBar::tab:selected {
+     /* expand/overlap to the left and right by 4px */
+     margin-left: -4px;
+     margin-right: -4px;
+ }
+
+ QTabBar::tab:first:selected {
+     margin-left: 0; /* the first selected tab has nothing to overlap with on the left */
+ }
+
+ QTabBar::tab:last:selected {
+     margin-right: 0; /* the last selected tab has nothing to overlap with on the right */
+ }
+
+ QTabBar::tab:only-one {
+     margin: 0; /* if there is only one tab, we don't want overlapping margins */
+ }
+
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_main">
+      <property name="minimumSize">
+       <size>
+        <width>80</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox{background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0.482955 rgba(39, 74, 157, 255), stop:1 rgba(126, 154, 255, 255));
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="pushButton_show">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> QPushButton{ background-color: rgba(0,0,0,0);}
+/*QPushButton:focus:pressed{  background-color: rgba(0,0,0,0);  border-image: url(:/img/img/right.png) 3 3 3 3; }
+QPushButton:hover{  background-color: rgba(0,0,0,0); border-image: url(:/img/img/right.png) 3 3 3 3; }*/</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resourses.qrc">
+         <normaloff>:/img/img/1119765.png</normaloff>:/img/img/1119765.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>58</width>
+         <height>58</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_menu">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>10</y>
+         <width>1257</width>
+         <height>532</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+border:none; 
+background-color: transparent;}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="2">
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="4">
+            <widget class="QPushButton" name="pushButton3">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/3.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/333.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/33.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton1">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/1.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/111.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/11.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton4">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/4.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/444.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/44.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QPushButton" name="pushButton6">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/6.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/666.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/66.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="pushButton7">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/7.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/777.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/77.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="pushButton2">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/2.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/222.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/22.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QPushButton" name="pushButton9">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/9.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/999.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/99.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="pushButton8">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/8.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/888.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/88.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>90</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="pushButton5">
+             <property name="minimumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>260</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+ {
+             color: grey;
+             border-image: url(:/img/img/5.png)3 10 3 10;
+             border-top: 2px transparent;
+             border-bottom: 2px transparent;
+             border-right: 3px transparent;
+             border-left: 3px transparent;
+margin: 3px;
+ }
+QPushButton:focus:pressed{  border-image: url(:/img/img/555.png)3 10 3 10; }
+QPushButton:hover{  border-image: url(:/img/img/55.png)3 10 3 10; }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                   stop: 0 #dedede, stop: 0.5 #434343,
+                                   stop: 0.51 #000000, stop: 1 #656a6d);
+    color: #FFFFFF;
+    font: bold 14px;
+    min-width: 80px;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                   stop: 0 #cfcccc, stop: 0.5 #333232,
+                                   stop: 0.51 #000000, stop: 1 #585c5f);
+    color: #00CC00;
+}
+
+QPushButton:flat {
+    border: none;
+}</string>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="styleSheet">
+              <string notr="true">QScrollArea{background-color: transparent;border:none;}</string>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>115</width>
+                <height>368</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QWidget{   background-color: transparent;}
+QPushButton {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    border-image: url(:/img/img/menubtn3.png) 3 10 3 10;
+    color: black;
+    font: bold 14px;
+    min-width: 80px;
+}
+
+QPushButton:focus:pressed {
+    color: #00CC00;
+      border-image: url(:/img/img/menubtn4.png) 3 10 3 10;
+}
+
+QPushButton:flat {
+    border: none;
+}
+
+QPushButton:hover {
+      border-image: url(:/img/img/menubtn2.png) 3 10 3 10;
+}</string>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton_back">
+             <property name="minimumSize">
+              <size>
+               <width>82</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Назад</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="0" colspan="4">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>180</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_hide">
+       <property name="geometry">
+        <rect>
+         <x>76</x>
+         <y>270</y>
+         <width>60</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> QPushButton{ background-color: rgba(0,0,0,0);  }
+/*QPushButton:focus:pressed{  background-color: rgba(0,0,0,0);  border-image: url(:/img/img/left.png) 3 3 3 3; }
+QPushButton:hover{  background-color: rgba(0,0,0,0); border-image: url(:/img/img/left.png) 3 3 3 3; }*/</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resourses.qrc">
+         <normaloff>:/img/img/1119762.png</normaloff>:/img/img/1119762.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>58</width>
+         <height>58</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::tab-bar {
+
+ }
+
+ QTabBar::tab {
+  background: gray;
+ /* background: rgb(161, 163, 255);*/
+  padding: 10px;
+font-size:12px;
+color:rgb(255, 255, 255);
+ }
+
+ QTabBar::tab:selected
+{
+ background: rgb(33, 0, 168);
+background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0.482955 rgba(39, 74, 157, 255), stop:1 rgba(126, 154, 255, 255));
+font-size:13px;
+color:white;
+font:bold;
+
+}
+ QTabBar::tab:hover {  
+	background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 9, 140, 255), stop:0.494318 rgba(59, 70, 130, 255), stop:1 rgba(25, 0, 126, 255));
+ }
+QTabBar::close-button
+{
+ image: url(:/img/img/cancel.png) subcontrol-position: left; 
+} 
+
+QTabBar::close-button:hover
+ {
+ image:url(:/img/img/cancel.png);
+ }
+QTabBar::close-button {
+     image: url(:/img/img/cancel.png)
+     subcontrol-position: left;
+ }
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QMdiArea::TabbedView</enum>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="tabsMovable">
+       <bool>true</bool>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Triangular</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1178</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Справочники</string>
+    </property>
+    <addaction name="action_semestr"/>
+    <addaction name="action_discipline"/>
+    <addaction name="action_group"/>
+    <addaction name="action_tema_diplomnoi"/>
+    <addaction name="action_doljnosti"/>
+    <addaction name="action_poruch_status"/>
+    <addaction name="action_zvaniya"/>
+    <addaction name="action_prac_type"/>
+    <addaction name="actionKnigi"/>
+    <addaction name="action_kafedry"/>
+    <addaction name="action_specialnosti"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Настройки</string>
+    </property>
+    <addaction name="action_podkl"/>
+   </widget>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action_exit"/>
+    <addaction name="action_Oteshel"/>
+    <addaction name="action_restart"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Студенты</string>
+    </property>
+    <addaction name="action_studenti"/>
+    <addaction name="action_sport"/>
+    <addaction name="action_konf_sem"/>
+    <addaction name="action_stipend"/>
+    <addaction name="action_olimp"/>
+    <addaction name="action_obchejitie"/>
+    <addaction name="action_actVnedr"/>
+    <addaction name="action_practika"/>
+    <addaction name="action_gak"/>
+    <addaction name="action_Diplom"/>
+    <addaction name="action_course_work"/>
+    <addaction name="action_srezy"/>
+    <addaction name="action_trudoVipusk"/>
+    <addaction name="action_BolezniStud"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Сотрудники</string>
+    </property>
+    <addaction name="action_sotrudniki"/>
+    <addaction name="action_porucheniya"/>
+    <addaction name="action_kur_rab"/>
+    <addaction name="action_lic_docs"/>
+    <addaction name="action_metodichki"/>
+    <addaction name="action_statia"/>
+    <addaction name="action_nir_sotr"/>
+    <addaction name="actionPublicatNir"/>
+    <addaction name="actionBolezniSotr"/>
+    <addaction name="actionPovyshKval"/>
+    <addaction name="actionNagradi"/>
+    <addaction name="action_komGAK"/>
+    <addaction name="action_raspisanie"/>
+    <addaction name="action_CreateGrafPosesh"/>
+    <addaction name="action_JurnalVzaimopos"/>
+    <addaction name="action_planZasedKaf"/>
+    <addaction name="action_proekty"/>
+    <addaction name="action_spravki_pochas"/>
+    <addaction name="action_ObuchKursi"/>
+    <addaction name="action_vedomosti_kursovye"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>Контрагенты</string>
+    </property>
+    <addaction name="action_partners"/>
+    <addaction name="action_Vakansi"/>
+    <addaction name="actionSponsors"/>
+   </widget>
+   <widget class="QMenu" name="menu_7">
+    <property name="title">
+     <string>Рассылка сообщений</string>
+    </property>
+    <addaction name="action_otpr_soobsh"/>
+    <addaction name="actionSendMessSotr"/>
+    <addaction name="action_RassilkaStudent"/>
+   </widget>
+   <widget class="QMenu" name="menu_8">
+    <property name="title">
+     <string>Отчеты</string>
+    </property>
+    <widget class="QMenu" name="menu_5">
+     <property name="title">
+      <string>Сотрудники</string>
+     </property>
+     <addaction name="action_otchet_sotrudniki"/>
+     <addaction name="actionRaiting"/>
+     <addaction name="action_otchet_povyshKval"/>
+     <addaction name="action_otchet_spravki_pochas"/>
+    </widget>
+    <widget class="QMenu" name="menu_9">
+     <property name="title">
+      <string>Студенты</string>
+     </property>
+     <addaction name="action_otchet_studenty"/>
+     <addaction name="action_reportStarostaGruppi"/>
+     <addaction name="action_srez_bally"/>
+     <addaction name="action_praktiki"/>
+     <addaction name="action_svod_otchet_praktik"/>
+     <addaction name="action_forma_controlya"/>
+    </widget>
+    <widget class="QMenu" name="menu_11">
+     <property name="title">
+      <string>Выпускники</string>
+     </property>
+     <addaction name="action_Vipusk"/>
+     <addaction name="action_RepTrudoVip"/>
+    </widget>
+    <addaction name="menu_5"/>
+    <addaction name="menu_9"/>
+    <addaction name="menu_11"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_6"/>
+   <addaction name="menu_7"/>
+   <addaction name="menu_8"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <action name="action_podkl">
+   <property name="text">
+    <string>Настройки подключения</string>
+   </property>
+  </action>
+  <action name="action_semestr">
+   <property name="text">
+    <string>Семестры</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_studenti">
+   <property name="text">
+    <string>Студенты</string>
+   </property>
+  </action>
+  <action name="action_discipline">
+   <property name="text">
+    <string>Дисциплины</string>
+   </property>
+  </action>
+  <action name="action_group">
+   <property name="text">
+    <string>Группы</string>
+   </property>
+  </action>
+  <action name="action_tip_practiki">
+   <property name="text">
+    <string>Тип практики</string>
+   </property>
+  </action>
+  <action name="action_sotrudniki">
+   <property name="text">
+    <string>Сотрудники</string>
+   </property>
+  </action>
+  <action name="action_sport">
+   <property name="text">
+    <string>Спорт</string>
+   </property>
+  </action>
+  <action name="action_porucheniya">
+   <property name="text">
+    <string>Поручения</string>
+   </property>
+  </action>
+  <action name="action_tema_diplomnoi">
+   <property name="text">
+    <string>Темы дипломных работ</string>
+   </property>
+  </action>
+  <action name="action_doljnosti">
+   <property name="text">
+    <string>Должности</string>
+   </property>
+  </action>
+  <action name="action_konf_sem">
+   <property name="text">
+    <string>Конференции и семинары</string>
+   </property>
+  </action>
+  <action name="action_kur_rab">
+   <property name="text">
+    <string>Кураторские работы</string>
+   </property>
+  </action>
+  <action name="action_poruch_status">
+   <property name="text">
+    <string>Статусы поручений</string>
+   </property>
+  </action>
+  <action name="action_zvaniya">
+   <property name="text">
+    <string>Звания</string>
+   </property>
+  </action>
+  <action name="action_prac_type">
+   <property name="text">
+    <string>Виды практик</string>
+   </property>
+  </action>
+  <action name="action_lic_docs">
+   <property name="text">
+    <string>Лицензии и документы</string>
+   </property>
+  </action>
+  <action name="action_metodichki">
+   <property name="text">
+    <string>Методички</string>
+   </property>
+  </action>
+  <action name="action_stipend">
+   <property name="text">
+    <string>Стипендии</string>
+   </property>
+  </action>
+  <action name="action_statia">
+   <property name="text">
+    <string>Статьи</string>
+   </property>
+  </action>
+  <action name="action_olimp">
+   <property name="text">
+    <string>Олимпиады</string>
+   </property>
+  </action>
+  <action name="action_obchejitie">
+   <property name="text">
+    <string>Общежитие</string>
+   </property>
+  </action>
+  <action name="action_partners">
+   <property name="text">
+    <string>Партёры</string>
+   </property>
+  </action>
+  <action name="action_actVnedr">
+   <property name="text">
+    <string>Акты внедрения</string>
+   </property>
+  </action>
+  <action name="action_practika">
+   <property name="text">
+    <string>Практика</string>
+   </property>
+  </action>
+  <action name="action_Vakansi">
+   <property name="text">
+    <string>Вакансии от партнеров</string>
+   </property>
+  </action>
+  <action name="action_nir_sotr">
+   <property name="text">
+    <string>НИР сотрудников</string>
+   </property>
+  </action>
+  <action name="action_otpr_soobsh">
+   <property name="text">
+    <string>Выпускникам</string>
+   </property>
+  </action>
+  <action name="actionKnigi">
+   <property name="text">
+    <string>Книги</string>
+   </property>
+  </action>
+  <action name="actionPublicatNir">
+   <property name="text">
+    <string>Публикация НИР</string>
+   </property>
+  </action>
+  <action name="actionBolezniSotr">
+   <property name="text">
+    <string>Болезни сотрудников</string>
+   </property>
+  </action>
+  <action name="actionSponsors">
+   <property name="text">
+    <string>Спонсоры</string>
+   </property>
+  </action>
+  <action name="actionPovyshKval">
+   <property name="text">
+    <string>Повышение квалификации</string>
+   </property>
+  </action>
+  <action name="actionRaiting">
+   <property name="text">
+    <string>Рейтинг сотрудников</string>
+   </property>
+  </action>
+  <action name="actionNagradi">
+   <property name="text">
+    <string>Награды</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>ГАК</string>
+   </property>
+  </action>
+  <action name="action_komGAK">
+   <property name="text">
+    <string>Список ГАК</string>
+   </property>
+  </action>
+  <action name="action_gak">
+   <property name="text">
+    <string>ГАК</string>
+   </property>
+  </action>
+  <action name="action_Oteshel">
+   <property name="text">
+    <string>Временно отошел</string>
+   </property>
+  </action>
+  <action name="action_restart">
+   <property name="text">
+    <string>Сменить пользователя</string>
+   </property>
+  </action>
+  <action name="action_raspisanie">
+   <property name="text">
+    <string>Расписание </string>
+   </property>
+  </action>
+  <action name="action_JurnalVzaimopos">
+   <property name="text">
+    <string>Журнал взаимопосещения</string>
+   </property>
+   <property name="toolTip">
+    <string>Журнал взаимопосещения</string>
+   </property>
+  </action>
+  <action name="action_reportStarostaGruppi">
+   <property name="text">
+    <string>Отчет по старостам групп</string>
+   </property>
+  </action>
+  <action name="action_Diplom">
+   <property name="text">
+    <string>Диплом</string>
+   </property>
+  </action>
+  <action name="action_course_work">
+   <property name="text">
+    <string>Курсовые работы</string>
+   </property>
+  </action>
+  <action name="action_Vipusk">
+   <property name="text">
+    <string>Отчет по выпускникам</string>
+   </property>
+  </action>
+  <action name="action_srezy">
+   <property name="text">
+    <string>Срез знаний</string>
+   </property>
+  </action>
+  <action name="action_trudoVipusk">
+   <property name="text">
+    <string>Трудоустройство выпускников</string>
+   </property>
+  </action>
+  <action name="action_RepTrudoVip">
+   <property name="text">
+    <string>Отчет по трудоустройству выпускников</string>
+   </property>
+   <property name="toolTip">
+    <string>Отчет по трудоустройству выпускников</string>
+   </property>
+  </action>
+  <action name="action_temp">
+   <property name="text">
+    <string>Отчет</string>
+   </property>
+  </action>
+  <action name="action_BolezniStud">
+   <property name="text">
+    <string>Болезни студентов</string>
+   </property>
+  </action>
+  <action name="actionSendMessSotr">
+   <property name="text">
+    <string>Сотрудникам</string>
+   </property>
+  </action>
+  <action name="action_srez_bally">
+   <property name="text">
+    <string>Баллы по срезу знаний</string>
+   </property>
+  </action>
+  <action name="action_RassilkaStudent">
+   <property name="text">
+    <string>Студентам</string>
+   </property>
+  </action>
+  <action name="action_planZasedKaf">
+   <property name="text">
+    <string>Планы заседаний кафедры</string>
+   </property>
+  </action>
+  <action name="action_forma_controlya">
+   <property name="text">
+    <string>Форма контроля студентов</string>
+   </property>
+  </action>
+  <action name="action_praktiki">
+   <property name="text">
+    <string>Отчет по прохождениям практик</string>
+   </property>
+  </action>
+  <action name="action_otchet_studenty">
+   <property name="text">
+    <string>Отчет по студентам</string>
+   </property>
+  </action>
+  <action name="action_CreateGrafPosesh">
+   <property name="text">
+    <string>Создание графика взаимопосещения</string>
+   </property>
+  </action>
+  <action name="action_svod_otchet_praktik">
+   <property name="text">
+    <string>Сводный отчёт по практикам</string>
+   </property>
+  </action>
+  <action name="action_proekty">
+   <property name="text">
+    <string>Проекты</string>
+   </property>
+  </action>
+  <action name="action_otchet_povyshKval">
+   <property name="text">
+    <string>Отчёт по повышениям квалификаций</string>
+   </property>
+  </action>
+  <action name="action_vedomosti_kursovye">
+   <property name="text">
+    <string>Ведомости курсовых работ</string>
+   </property>
+  </action>
+  <action name="action_kafedry">
+   <property name="text">
+    <string>Кафедры</string>
+   </property>
+  </action>
+  <action name="action_specialnosti">
+   <property name="text">
+    <string>Специальности</string>
+   </property>
+  </action>
+  <action name="action_otchet_sotrudniki">
+   <property name="text">
+    <string>Отчет по сотрудникам</string>
+   </property>
+  </action>
+  <action name="action_spravki_pochas">
+   <property name="text">
+    <string>Справки почасовой оплаты</string>
+   </property>
+  </action>
+  <action name="action_ObuchKursi">
+   <property name="text">
+    <string>Платные обучающие курсы</string>
+   </property>
+  </action>
+  <action name="action_otchet_spravki_pochas">
+   <property name="text">
+    <string>Справка почасовой оплаты кафедры</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
+ <connections/>
+</ui>

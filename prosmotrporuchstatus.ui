@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>prosmotrPoruchStatus</class>
+ <widget class="QDialog" name="prosmotrPoruchStatus">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>491</width>
+    <height>338</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>15</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Поручения</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QGroupBox{
+	background-color: rgb(240, 240, 240);
+border:2px solid black;
+border-radius: 15;
+margin:8px;
+font-size:15px;
+}
+QLabel
+{
+font-size:15px;
+}
+QPushButton
+{
+font-size:15px;
+}
+QScrollArea{border:none;}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButton_close">
+     <property name="text">
+      <string>Закрыть</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resourses.qrc">
+       <normaloff>:/img/img/cancel.png</normaloff>:/img/img/cancel.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="pushButton_poruch">
+     <property name="text">
+      <string>Перейти к поручениям</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>473</width>
+        <height>288</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
+ <connections/>
+</ui>

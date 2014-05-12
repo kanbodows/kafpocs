@@ -1,0 +1,573 @@
+#include "addoreditsostavkom.h"
+#include "ui_addoreditsostavkom.h"
+#include<QMessageBox>
+
+AddOrEditSostavKom::AddOrEditSostavKom(QWidget *parent, int select, int id, int viewsv) :
+    QDialog(parent),
+    ui(new Ui::AddOrEditSostavKom)
+{
+    ui->setupUi(this);
+    ui->lineEdit_nomRaport->setValidator( new QIntValidator(1, 1000000, this));
+    ui->lineEdit_nomRaport->setPlaceholderText("Вводятся только цифры");
+    this->preds=0;
+    this->secretar=0;
+    this->chl1=0;
+    this->chl2=0;
+    this->chl3=0;
+    this->chl4=0;
+    this->chl5=0;
+    if (! dal_main->checkConnection())
+    {
+        QMessageBox::warning(this, tr("Ошибка подключения"), tr("Соединение не установлено"));
+        throw std::exception();
+    }
+    this->isEdit = false;
+    ui->dateEdit->setDate(QDate::currentDate());
+    ui->label_error->setVisible(false);
+    dal_prepodcontrol = new Dal_prepodcontrol(this);
+    QSqlQueryModel *comboPredsed = new QSqlQueryModel(this);
+    comboPredsed = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Predsed->setModel(comboPredsed);
+    ui->comboBox_Predsed->setModelColumn(1);
+    ui->comboBox_Predsed->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboSecr = new QSqlQueryModel(this);
+    comboSecr = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Secr->setModel(comboSecr);
+    ui->comboBox_Secr->setModelColumn(1);
+    ui->comboBox_Secr->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch1 = new QSqlQueryModel(this);
+    comboch1 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch1->setModel(comboch1);
+    ui->comboBox_Ch1->setModelColumn(1);
+    ui->comboBox_Ch1->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch2 = new QSqlQueryModel(this);
+    comboch2 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch2->setModel(comboch2);
+    ui->comboBox_Ch2->setModelColumn(1);
+    ui->comboBox_Ch2->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch3 = new QSqlQueryModel(this);
+    comboch3 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch3->setModel(comboch3);
+    ui->comboBox_Ch3->setModelColumn(1);
+    ui->comboBox_Ch3->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch4 = new QSqlQueryModel(this);
+    comboch4 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch4->setModel(comboch4);
+    ui->comboBox_Ch4->setModelColumn(1);
+    ui->comboBox_Ch4->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch5 = new QSqlQueryModel(this);
+    comboch5 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch5->setModel(comboch5);
+    ui->comboBox_Ch5->setModelColumn(1);
+    ui->comboBox_Ch5->setCurrentIndex(-1);
+
+    css = new Styles;
+
+    if (select == 1)
+    {
+        this->setWindowTitle(tr("Добавить новую запись"));
+    }
+    else
+    {
+        this->isEdit = true;
+        this->setWindowTitle(tr("Редактирование записи"));
+
+        this->rec_id = id;
+        int ids_pred;
+        int ids_secr;
+        int ids_ch1;
+        int ids_ch2;
+        int ids_ch3;
+        int ids_ch4;
+        int ids_ch5;
+
+
+        QSqlQuery *query = new QSqlQuery;
+        query = dal_prepodcontrol->getCurrentSostavGAK(this->rec_id);
+
+        ids_pred = query->value(1).toInt();
+        for (int j = 0; j < ui->comboBox_Predsed->count(); j++)
+        {
+            if (comboPredsed->index(j, 0).data().toInt() == ids_pred)
+            {
+                ui->comboBox_Predsed->setCurrentIndex(j);
+                ui->comboBox_Predsed->view()->setCurrentIndex(comboPredsed->index(j, 0));
+                break;
+            }
+        }
+
+
+        ids_secr = query->value(2).toInt();
+        for (int j = 0; j < ui->comboBox_Secr->count(); j++)
+        {
+            if (comboSecr->index(j, 0).data().toInt() == ids_secr)
+            {
+                ui->comboBox_Secr->setCurrentIndex(j);
+                ui->comboBox_Secr->view()->setCurrentIndex(comboSecr->index(j, 0));
+                break;
+            }
+        }
+
+        ids_ch1 = query->value(3).toInt();
+        for (int j = 0; j < ui->comboBox_Ch1->count(); j++)
+        {
+            if (comboch1->index(j, 0).data().toInt() == ids_ch1)
+            {
+                ui->comboBox_Ch1->setCurrentIndex(j);
+                ui->comboBox_Ch1->view()->setCurrentIndex(comboch1->index(j, 0));
+                break;
+            }
+        }
+
+        ids_ch2 = query->value(4).toInt();
+        for (int j = 0; j < ui->comboBox_Ch2->count(); j++)
+        {
+            if (comboch2->index(j, 0).data().toInt() == ids_ch2)
+            {
+                ui->comboBox_Ch2->setCurrentIndex(j);
+                ui->comboBox_Ch2->view()->setCurrentIndex(comboch2->index(j, 0));
+                break;
+            }
+        }
+
+        ids_ch3 = query->value(5).toInt();
+        for (int j = 0; j < ui->comboBox_Ch3->count(); j++)
+        {
+            if (comboch3->index(j, 0).data().toInt() == ids_ch3)
+            {
+                ui->comboBox_Ch3->setCurrentIndex(j);
+                ui->comboBox_Ch3->view()->setCurrentIndex(comboch3->index(j, 0));
+                break;
+            }
+        }
+
+        ids_ch4 = query->value(6).toInt();
+        for (int j = 0; j < ui->comboBox_Ch4->count(); j++)
+        {
+            if (comboch4->index(j, 0).data().toInt() == ids_ch4)
+            {
+                ui->comboBox_Ch4->setCurrentIndex(j);
+                ui->comboBox_Ch4->view()->setCurrentIndex(comboch4->index(j, 0));
+                break;
+            }
+        }
+
+        ids_ch5 = query->value(7).toInt();
+        for (int j = 0; j < ui->comboBox_Ch5->count(); j++)
+        {
+            if (comboch5->index(j, 0).data().toInt() == ids_ch5)
+            {
+                ui->comboBox_Ch5->setCurrentIndex(j);
+                ui->comboBox_Ch5->view()->setCurrentIndex(comboch5->index(j, 0));
+                break;
+            }
+        }
+
+        this->preds = ids_pred;
+        this->secretar = ids_secr;
+        this->chl1 = ids_ch1;
+        this->chl2 = ids_ch2;
+        this->chl3 = ids_ch3;
+        this->chl4 = ids_ch4;
+        this->chl5 = ids_ch5;
+
+
+        ui->dateEdit->setDate(query->value(15).toDate());
+        ui->lineEdit_nomRaport->setText(query->value(16).toString());
+    }
+
+}
+
+AddOrEditSostavKom::~AddOrEditSostavKom()
+{
+    delete ui;
+}
+
+void AddOrEditSostavKom::on_comboBox_Predsed_activated(int index)
+{
+    this->preds = ui->comboBox_Predsed->model()->index(ui->comboBox_Predsed->currentIndex(), 0).data().toInt();
+    ui->comboBox_Predsed->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_comboBox_Secr_activated(int index)
+{
+    this->secretar = ui->comboBox_Secr->model()->index(ui->comboBox_Secr->currentIndex(), 0).data().toInt();
+    ui->comboBox_Secr->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_comboBox_Ch1_activated(int index)
+{
+    this->chl1 = ui->comboBox_Ch1->model()->index(ui->comboBox_Ch1->currentIndex(), 0).data().toInt();
+    ui->comboBox_Ch1->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_comboBox_Ch2_activated(int index)
+{
+    this->chl2 = ui->comboBox_Ch2->model()->index(ui->comboBox_Ch2->currentIndex(), 0).data().toInt();
+    ui->comboBox_Ch2->setStyleSheet(css->pressedStyleSheet);
+
+}
+
+void AddOrEditSostavKom::on_comboBox_Ch3_activated(int index)
+{
+    this->chl3 = ui->comboBox_Ch3->model()->index(ui->comboBox_Ch3->currentIndex(), 0).data().toInt();
+    ui->comboBox_Ch3->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_comboBox_Ch4_activated(int index)
+{
+    this->chl4 = ui->comboBox_Ch4->model()->index(ui->comboBox_Ch4->currentIndex(), 0).data().toInt();
+    ui->comboBox_Ch4->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_comboBox_Ch5_activated(int index)
+{
+    this->chl5 = ui->comboBox_Ch5->model()->index(ui->comboBox_Ch5->currentIndex(), 0).data().toInt();
+    ui->comboBox_Ch5->setStyleSheet(css->pressedStyleSheet);
+}
+
+void AddOrEditSostavKom::on_pushButton_begin_clicked()
+{
+    this->preds = 0;
+    this->secretar = 0;
+    this->chl1 = 0;
+    this->chl2 = 0;
+    this->chl3 = 0;
+    this->chl4 = 0;
+    this->chl5 = 0;
+    if (! dal_main->checkConnection())
+    {
+        QMessageBox::warning(this, tr("Ошибка подключения"), tr("Соединение не установлено"));
+        return;
+    }
+    dal_prepodcontrol = new Dal_prepodcontrol(this);
+    QSqlQueryModel *comboPredsed = new QSqlQueryModel(this);
+    comboPredsed = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Predsed->setModel(comboPredsed);
+    ui->comboBox_Predsed->setModelColumn(1);
+    ui->comboBox_Predsed->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboSecr = new QSqlQueryModel(this);
+    comboSecr = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Secr->setModel(comboSecr);
+    ui->comboBox_Secr->setModelColumn(1);
+    ui->comboBox_Secr->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch1 = new QSqlQueryModel(this);
+    comboch1 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch1->setModel(comboch1);
+    ui->comboBox_Ch1->setModelColumn(1);
+    ui->comboBox_Ch1->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch2 = new QSqlQueryModel(this);
+    comboch2 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch2->setModel(comboch2);
+    ui->comboBox_Ch2->setModelColumn(1);
+    ui->comboBox_Ch2->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch3 = new QSqlQueryModel(this);
+    comboch3 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch3->setModel(comboch3);
+    ui->comboBox_Ch3->setModelColumn(1);
+    ui->comboBox_Ch3->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch4 = new QSqlQueryModel(this);
+    comboch4 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch4->setModel(comboch4);
+    ui->comboBox_Ch4->setModelColumn(1);
+    ui->comboBox_Ch4->setCurrentIndex(-1);
+
+    QSqlQueryModel *comboch5 = new QSqlQueryModel(this);
+    comboch5 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
+    ui->comboBox_Ch5->setModel(comboch5);
+    ui->comboBox_Ch5->setModelColumn(1);
+    ui->comboBox_Ch5->setCurrentIndex(-1);
+
+    ui->comboBox_Predsed->setEnabled(true);
+    ui->comboBox_Secr->setEnabled(false);
+    ui->comboBox_Ch1->setEnabled(false);
+    ui->comboBox_Ch2->setEnabled(false);
+    ui->comboBox_Ch3->setEnabled(false);
+    ui->comboBox_Ch4->setEnabled(false);
+    ui->comboBox_Ch5->setEnabled(false);
+
+}
+
+void AddOrEditSostavKom::on_pushButton_ok_clicked()
+{
+    bool error = false;
+    bool errorPovtor = false;
+    if (ui->comboBox_Predsed->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+    if (ui->comboBox_Secr->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+
+    if(ui->comboBox_Ch1->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+    if(ui->comboBox_Ch2->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+
+    if(ui->comboBox_Ch3->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+
+    if(ui->comboBox_Ch4->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+
+    if(ui->comboBox_Ch5->currentIndex()==-1)
+    {
+        error = true;
+    }
+
+    if(this->preds == this->secretar)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->preds == this->chl1)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->preds == this->chl2)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->preds == this->chl3)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->preds == this->chl4)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->preds == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Predsed->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->secretar == this->chl1)
+    {
+        errorPovtor = true;
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->secretar == this->chl2)
+    {
+        errorPovtor = true;
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->secretar == this->chl3)
+    {
+        errorPovtor = true;
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->secretar == this->chl4)
+    {
+        errorPovtor = true;
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->secretar == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Secr->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl1 == this->chl2)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl1 == this->chl3)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl1 == this->chl4)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl1 == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch1->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl2 == this->chl3)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl2 == this->chl4)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl2 == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch2->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl3 == this->chl4)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+    if(this->chl3 == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch3->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+
+    if(this->chl4 == this->chl5)
+    {
+        errorPovtor = true;
+        ui->comboBox_Ch4->setStyleSheet(css->wrongStyleSheet2);
+        ui->comboBox_Ch5->setStyleSheet(css->wrongStyleSheet2);
+    }
+
+
+    if (errorPovtor==true)
+    {
+        QMessageBox::critical(this, tr("Ошибка"), tr("Председатель, секретарь и члены комиссии не должны повторяться"));
+        return;
+    }
+
+    if(ui->lineEdit_nomRaport->text()=="")
+    {
+        error = true;
+    }
+
+    if (error==true)
+    {
+        ui->label_error->setVisible(true);
+        return;
+    }
+    else
+    {
+        if (! this->isEdit)
+        {
+            if (! dal_main->checkConnection())
+            {
+                QMessageBox::warning(this, tr("Ошибка соединения"), tr("Соединение не установлено"));
+                return;
+            }
+            if (dal_prepodcontrol->sostavKomAdd(this->preds,\
+                                                this->secretar,\
+                                                this->chl1,\
+                                                this->chl2,\
+                                                this->chl3,\
+                                                this->chl4,\
+                                                this->chl5,\
+                                                ui->dateEdit->date(),\
+                                                ui->lineEdit_nomRaport->text().toInt()))
+            {
+                this->close();
+                QMessageBox::information(this, tr("Информация"), tr("Запись успешно добавлена"));
+            }
+            else
+            {
+                this->close();
+                QMessageBox::warning(this, tr("Ошибка"), tr("Данные не были добавлены в базу данных"));
+            }
+        }
+
+        else
+        {
+            if (! dal_main->checkConnection())
+            {
+                QMessageBox::warning(this, tr("Ошибка соединения"), tr("Соединение не установлено"));
+                return;
+            }
+            if (dal_prepodcontrol->sostavKomEdit(this->rec_id,\
+                                                 this->preds,\
+                                                 this->secretar,\
+                                                 this->chl1,\
+                                                 this->chl2,\
+                                                 this->chl3,\
+                                                 this->chl4,\
+                                                 this->chl5,\
+                                                 ui->dateEdit->date(),\
+                                                 ui->lineEdit_nomRaport->text().toInt()))
+            {
+                this->close();
+                QMessageBox::information(this, tr("Информация"), tr("Данные успешно отредактированы"));
+            }
+            else
+            {
+                this->close();
+                QMessageBox::information(this, tr("Информация"), tr("Данные не были изменены"));
+            }
+        }
+    }
+
+}
+
+void AddOrEditSostavKom::on_pushButtonCancel_clicked()
+{
+    this->close();
+}

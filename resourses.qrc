@@ -1,0 +1,100 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/1downarrow.png</file>
+        <file>img/loader.gif</file>
+        <file>img/add.png</file>
+        <file>img/cancel.png</file>
+        <file>img/delete.png</file>
+        <file>img/edit.png</file>
+        <file>img/refresh.png</file>
+        <file>img/save.png</file>
+        <file>img/paper.png</file>
+        <file>img/nasty_fabric.png</file>
+        <file>img/text (1).png</file>
+        <file>img/text (2).png</file>
+        <file>img/text (3).png</file>
+        <file>img/text (4).png</file>
+        <file>img/text (5).png</file>
+        <file>img/text (6).png</file>
+        <file>img/text (7).png</file>
+        <file>img/text (8).png</file>
+        <file>img/paper2.png</file>
+        <file>img/discipline.png</file>
+        <file>img/books.png</file>
+        <file>img/clear.png</file>
+        <file>img/find.png</file>
+        <file>img/findOk.png</file>
+        <file>img/ok.png</file>
+        <file>img/3996.png</file>
+        <file>img/33291.png</file>
+        <file>img/43146.png</file>
+        <file>img/535786.png</file>
+        <file>img/1134892.png</file>
+        <file>img/1.png</file>
+        <file>img/2.png</file>
+        <file>img/3.png</file>
+        <file>img/4.png</file>
+        <file>img/5.png</file>
+        <file>img/6.png</file>
+        <file>img/7.png</file>
+        <file>img/8.png</file>
+        <file>img/9.png</file>
+        <file>img/11.png</file>
+        <file>img/111.png</file>
+        <file>img/1118971.png</file>
+        <file>img/1119762.png</file>
+        <file>img/1119765.png</file>
+        <file>img/left.png</file>
+        <file>img/right.png</file>
+        <file>img/22.png</file>
+        <file>img/33.png</file>
+        <file>img/44.png</file>
+        <file>img/55.png</file>
+        <file>img/66.png</file>
+        <file>img/77.png</file>
+        <file>img/88.png</file>
+        <file>img/99.png</file>
+        <file>img/222.png</file>
+        <file>img/333.png</file>
+        <file>img/444.png</file>
+        <file>img/555.png</file>
+        <file>img/666.png</file>
+        <file>img/777.png</file>
+        <file>img/888.png</file>
+        <file>img/999.png</file>
+        <file>img/loader2.gif</file>
+        <file>img/generate.png</file>
+        <file>img/print.png</file>
+        <file>img/chart.png</file>
+        <file>img/send.png</file>
+        <file>img/not.png</file>
+        <file>img/dow.gif</file>
+        <file>img/menubtn.png</file>
+        <file>img/menubtn2.png</file>
+        <file>img/menubtn3.png</file>
+        <file>img/menubtn4.png</file>
+        <file>img/paper3.png</file>
+        <file>img/sponsor.png</file>
+        <file>img/stud.png</file>
+        <file>img/srez.png</file>
+        <file>img/pocs.png</file>
+        <file>img/pocs2.png</file>
+        <file>img/institution_icon.png</file>
+        <file>img/report.png</file>
+        <file>img/524527.png</file>
+        <file>img/1124444.png</file>
+        <file>img/spr.png</file>
+        <file>img/avatar.png</file>
+        <file>img/star (1).png</file>
+        <file>img/star (2).png</file>
+        <file>img/star (3).png</file>
+        <file>img/star (4).png</file>
+        <file>img/star (5).png</file>
+        <file>img/star (6).png</file>
+        <file>img/star (7).png</file>
+        <file>img/cup.png</file>
+        <file>img/cup1.png</file>
+        <file>img/cup2.png</file>
+        <file>img/cup3.png</file>
+    </qresource>
+</RCC>

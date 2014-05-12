@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Raspisanie</class>
+ <widget class="QDialog" name="Raspisanie">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>783</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Расписание</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: rgb(255, 255, 255);
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_7">
+   <item row="5" column="1">
+    <widget class="QComboBox" name="comboBox_den">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="currentText">
+      <string/>
+     </property>
+     <property name="currentIndex">
+      <number>-1</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>Понедельник</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Вторник</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Среда</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Четверг</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Пятница</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Суббота</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Воскресенье</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox{
+border: 3px solid green;
+	background-color: rgb(255, 255, 255);
+}</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>763</width>
+        <height>394</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget{
+	background-color: rgb(255, 255, 255);
+}</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="pushButton_print">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Распечатать</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resourses.qrc">
+       <normaloff>:/img/img/print.png</normaloff>:/img/img/print.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Выберите день недели</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resourses.qrc"/>
+ </resources>
+ <connections/>
+</ui>

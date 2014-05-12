@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddOrEditVipusknik</class>
+ <widget class="QDialog" name="AddOrEditVipusknik">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>378</width>
+    <height>493</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label_error">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>225</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:red;</string>
+   </property>
+   <property name="text">
+    <string>Заполните обязательные поля</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_grupa">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>44</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_stud">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>70</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Выберите студента*</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_grup">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>20</y>
+     <width>94</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выберите группу*</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_student">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>95</y>
+     <width>221</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_nomer_diploma">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>148</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_foto_diploma">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>29</y>
+     <width>131</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>       Фото диплома</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_nomer_dipl">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>123</y>
+     <width>128</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите номер диплома*</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_addFoto">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>190</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Добавить фото</string>
+   </property>
+   <property name="icon">
+    <iconset resource="../resourses.qrc">
+     <normaloff>:/img/img/add.png</normaloff>:/img/img/add.png</iconset>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>198</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="displayFormat">
+    <string>dd MMMM yyyy</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_mail">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>249</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_tel">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>300</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_workspace">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>374</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_doljn">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>425</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_datas">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>174</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выберите дату окончания*</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_adresEmail">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>224</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите адрес почты</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_telef">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>275</y>
+     <width>90</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите телефон</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_mestoRaboti">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>116</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите место работы</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_dolj">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>102</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите должность</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_ok">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>461</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+   <property name="icon">
+    <iconset resource="../resourses.qrc">
+     <normaloff>:/img/img/ok.png</normaloff>:/img/img/ok.png</iconset>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_cancel">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>460</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отмена</string>
+   </property>
+   <property name="icon">
+    <iconset resource="../resourses.qrc">
+     <normaloff>:/img/img/cancel.png</normaloff>:/img/img/cancel.png</iconset>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>330</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выехал за границу</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resourses.qrc"/>
+ </resources>
+ <connections/>
+</ui>
