@@ -28,6 +28,38 @@ QSqlQueryModel *Dal_studentsControl::getKonf_sem(int gruppa, QString student, QS
     return model;
 }
 
+QSqlQueryModel *Dal_studentsControl::getProcentka(int ruk)
+{
+    QSqlQueryModel *procmodel = new QSqlQueryModel(this);
+    QString query = "SELECT * FROM stud_dopush_k_procentovke_view where 1=1 ";
+    if(ruk != 0)
+        query.append(" and rukovoditel = " + QString::number(ruk));
+    procmodel->setQuery(query);
+    procmodel->setHeaderData(12,Qt::Horizontal,tr("ФИО студента"));
+    return procmodel;
+}
+
+QSqlQueryModel *Dal_studentsControl::getProcentkaList(int id_stud)
+{
+    QSqlQueryModel *procListmodel = new QSqlQueryModel(this);
+    QString query = "SELECT * FROM procentovochniilist_view where 1=1 ";
+    if(id_stud != 0)
+        query.append(" and stud_id = " + QString::number(id_stud));
+    procListmodel->setQuery(query);
+    procListmodel->setHeaderData(3,Qt::Horizontal,tr("Дата"));
+    procListmodel->setHeaderData(4,Qt::Horizontal,tr("ФИО студента"));
+    procListmodel->setHeaderData(5,Qt::Horizontal,tr("Введение"));
+    procListmodel->setHeaderData(6,Qt::Horizontal,tr("Анализ\nтребований"));
+    procListmodel->setHeaderData(7,Qt::Horizontal,tr("Констр-ий\nраздел"));
+    procListmodel->setHeaderData(8,Qt::Horizontal,tr("Документирование"));
+    procListmodel->setHeaderData(9,Qt::Horizontal,tr("Эксперементальный"));
+    procListmodel->setHeaderData(10,Qt::Horizontal,tr("Экономический"));
+    procListmodel->setHeaderData(11,Qt::Horizontal,tr("Заключение"));
+    procListmodel->setHeaderData(12,Qt::Horizontal,tr("Работа ПП"));
+    procListmodel->setHeaderData(13,Qt::Horizontal,tr("Презентация"));
+    return procListmodel;
+}
+
 QSqlQueryModel *Dal_studentsControl::getGAK(int nomPrik)
 {
     QSqlQueryModel *GAKsmodel = new QSqlQueryModel(this);
@@ -781,6 +813,14 @@ QSqlQueryModel *Dal_studentsControl::getStudent(int groups)
     return StudentModel;
 }
 
+QSqlQueryModel *Dal_studentsControl::getStudentineit(int id_stud)
+{
+    QSqlQueryModel *StudentModel = new QSqlQueryModel(this);
+    StudentModel->setQuery("select * from is_student where id_student = " + QString::number(id_stud) + " and s_otch = 0");
+    StudentModel->setHeaderData(1,Qt::Horizontal,tr("ФИО студента"));
+    return StudentModel;
+}
+
 QSqlQueryModel *Dal_studentsControl::SendMessageStud(int groups)
 {
     QString query="";
@@ -874,6 +914,34 @@ bool Dal_studentsControl::addDiplom(int stud_id, int tema, int kom, int ruk)
     }
     else
         return true;
+}
+
+bool Dal_studentsControl::addProcentovka(int stud_id, QString dat, int veden, int anTreb, int konstr, int docum, int experementRazd, int econom, int zakl, int rabotaPP, int prezentac)
+{
+    qDebug()<<stud_id<<dat<<veden<<anTreb<<konstr<<anTreb<<docum<<experementRazd<<econom<<zakl<<rabotaPP<<prezentac;
+    QSqlQuery *qu = new QSqlQuery;
+    qu->prepare("insert into is_procentovka (stud_id, datas, vvedenie, analizTreb, konstruktrRazdel, documentir, ekspertnrazdel, ekonomich, zakl, rabotaPP, prezentacia) \
+                                     VALUES (:stud_id,:dat, :veden, :anTreb, :konstr, :docum, :experementRazd, :econom, :zakl, :rabotaPP, :prezentac)");
+    qu->bindValue(":stud_id", stud_id);
+    qu->bindValue(":dat", dat); //.toString("yyyy-MM-dd")
+    qu->bindValue(":veden", veden);
+    qu->bindValue(":anTreb", anTreb);
+    qu->bindValue(":konstr", konstr);
+    qu->bindValue(":docum", docum);
+    qu->bindValue(":experementRazd", experementRazd);
+    qu->bindValue(":econom", econom);
+    qu->bindValue(":zakl", zakl);
+    qu->bindValue(":rabotaPP", rabotaPP);
+    qu->bindValue(":prezentac", prezentac);
+    qu->exec();
+    if (!qu->isActive())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 bool Dal_studentsControl::BolezniStudAdd(int stud, QString bolez, QDate datZabol, QDate datVizd)

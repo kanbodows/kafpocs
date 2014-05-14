@@ -155,7 +155,10 @@ SOURCES += main.cpp\
     delegates/spinboxdelegate.cpp \
     reports/svodotchetgakbally.cpp \
     planumr.cpp \
-    add_edit_forms/addoreditplanumr.cpp
+    add_edit_forms/addoreditplanumr.cpp \
+    procentovka.cpp \
+    add_edit_forms/add_or_edit_procentovka.cpp \
+    prosmotr_redaktirovanie_procentovok.cpp
 
 HEADERS  += mainwindow.h \
     delegates/qlightboxwidget.h \
@@ -301,7 +304,10 @@ HEADERS  += mainwindow.h \
     delegates/spinboxdelegate.h \
     reports/svodotchetgakbally.h \
     planumr.h \
-    add_edit_forms/addoreditplanumr.h
+    add_edit_forms/addoreditplanumr.h \
+    procentovka.h \
+    add_edit_forms/add_or_edit_procentovka.h \
+    prosmotr_redaktirovanie_procentovok.h
 
 FORMS    += mainwindow.ui \
     accessdb.ui \
@@ -425,7 +431,10 @@ FORMS    += mainwindow.ui \
     add_edit_forms/addoredit_gak_bally.ui \
     reports/svodotchetgakbally.ui \
     planumr.ui \
-    add_edit_forms/addoreditplanumr.ui
+    add_edit_forms/addoreditplanumr.ui \
+    procentovka.ui \
+    add_edit_forms/add_or_edit_procentovka.ui \
+    prosmotr_redaktirovanie_procentovok.ui
 
 
 RESOURCES += \

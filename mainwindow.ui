@@ -842,6 +842,7 @@ QPushButton:hover{  background-color: rgba(0,0,0,0); border-image: url(:/img/img
     <addaction name="action_srezy"/>
     <addaction name="action_trudoVipusk"/>
     <addaction name="action_BolezniStud"/>
+    <addaction name="action_procentovka"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -1288,6 +1289,11 @@ QPushButton:hover{  background-color: rgba(0,0,0,0); border-image: url(:/img/img
   <action name="action_PlanUmr">
    <property name="text">
     <string>План издания УМР</string>
+   </property>
+  </action>
+  <action name="action_procentovka">
+   <property name="text">
+    <string>Процентовка</string>
    </property>
   </action>
  </widget>

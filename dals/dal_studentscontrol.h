@@ -9,6 +9,8 @@ class Dal_studentsControl : public DAL_main
 public:
     explicit Dal_studentsControl(QObject *parent = 0);
     QSqlQueryModel *getKonf_sem(int gruppa, QString student, QString theme);
+    QSqlQueryModel *getProcentka(int ruk);
+    QSqlQueryModel *getProcentkaList(int id_stud);
     QSqlQueryModel *getGAK(int nomPrik);
     QSqlQuery *getCurrentKonf_sem(int id_konf);
     QSqlQuery *getCurrentPracWork(int id_PracWork);
@@ -52,6 +54,7 @@ public:
     QSqlQueryModel *getVipusk_ki();
     QSqlQueryModel *getBolezniStud(int group, QString bolez, QDate dateZbol, QDate dateVizdorav);
     QSqlQueryModel *getStudent(int groups);
+    QSqlQueryModel *getStudentineit(int id_stud);
     QSqlQueryModel *SendMessageStud(int groups);
     QSqlQueryModel *getStudents(int spec_id, int group_id, QString student);
     QSqlQuery *getStudentNeotch(int id_stud);
@@ -66,6 +69,7 @@ public:
     QSqlQuery *getSrezyQuery(int group_id, QDate dateBegin, QDate dateEnd);
     QSqlQuery *getSrezySrednie(int srez_id);
     bool addDiplom(int stud_id, int tema, int kom, int ruk);
+    bool addProcentovka(int stud_id, QString dat, int veden, int anTreb, int konstr, int docum, int experementRazd, int econom, int zakl, int rabotaPP, int prezentac);
     bool BolezniStudAdd(int stud, QString bolez, QDate datZabol, QDate datVizd);
     bool getOlimpAdd(int stud_id, QString pred, QDate dates, QString comm, int mest, QString mestProv,QString prveril);
     bool getJurnVzaimoposAdd(int sotr_id, int discp_id, int group_id, int prover_id, QDateTime dates, QString commentarii, QString vidDiscipl, QString Ocenka);

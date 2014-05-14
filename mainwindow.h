@@ -88,6 +88,7 @@
 #include "reports/otchetspravkipochas.h"
 #include "uvedomlenie.h"
 #include "planumr.h"
+#include "procentovka.h"
 namespace Ui {
 class MainWindow;
 }
@@ -298,6 +299,8 @@ private slots:
     void on_action_otchet_spravki_pochas_triggered();
 
     void on_action_PlanUmr_triggered();
+
+    void on_action_procentovka_triggered();
 
 private:
     Ui::MainWindow *ui;

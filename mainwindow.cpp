@@ -1802,3 +1802,19 @@ void MainWindow::on_action_PlanUmr_triggered()
     PlanUMRform->showMaximized();
     on_pushButton_hide_clicked();
 }
+
+void MainWindow::on_action_procentovka_triggered()
+{
+    procentovka *procentovkaform;
+    try
+    {
+        procentovkaform = new procentovka(this);
+    }
+    catch(...)
+    {
+        return;
+    }
+    ui->mdiArea->addSubWindow(procentovkaform);
+    procentovkaform->showMaximized();
+    on_pushButton_hide_clicked();
+}
