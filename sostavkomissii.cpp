@@ -28,11 +28,7 @@ SostavKomissii::SostavKomissii(QWidget *parent) :
     this->nomerRaporta = 0;
     SostavKomModel = dal_prepodcontrol->getSostavKom(this->nomerRaporta);
     ui->tableView_sostavKomissii->setModel(SostavKomModel);
-    for (int i = 0; i < 15; ++i)
-        ui->tableView_sostavKomissii->setColumnHidden(i,true);
-    ui->tableView_sostavKomissii->setColumnHidden(16,true);
-    ui->tableView_sostavKomissii->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView_sostavKomissii->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView_sostavKomissii->setModelColumn(15);
     ui->groupBox_search->setVisible(false);
     ui->label_result->setVisible(false);
     ui->label_naideno->setVisible(false);

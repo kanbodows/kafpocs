@@ -1818,3 +1818,19 @@ void MainWindow::on_action_procentovka_triggered()
     procentovkaform->showMaximized();
     on_pushButton_hide_clicked();
 }
+
+void MainWindow::on_action_svodGak_triggered()
+{
+    SvodOtchetGakBally *form;
+    try
+    {
+        form = new SvodOtchetGakBally(this);
+    }
+    catch(...)
+    {
+        return;
+    }
+    ui->mdiArea->addSubWindow(form);
+    form->showMaximized();
+    on_pushButton_hide_clicked();
+}

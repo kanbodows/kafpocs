@@ -26,8 +26,8 @@ QTextDocument *MyPrint::print(QSqlQueryModel *model, RowList colHeaders, QString
                 "<link rel='stylesheet' type='text/css' href='format.css'>"
                 "</head><body>");
     if (title!="")
-        body.append("<center><H2>" + title + "</H2></center><hr>");
-    body.append("<table border='1' class = 'mine'><tr>");
+        body.append("<center><H2>" + title + "</H2></center><br>");
+    body.append("<center><table border='1' class = 'mine'><tr>");
     RowList::const_iterator i = colHeaders.constBegin();
     while (i != colHeaders.constEnd()) {
         colls.append(QString::number(i.key()));
@@ -75,7 +75,7 @@ QTextDocument *MyPrint::print(QSqlQueryModel *model, RowList colHeaders, QString
         }
         body.append("</tr>\n");
     }
-    body.append("</table>");
+    body.append("</table></center>");
     if (footer!="")
 
         body.append("<center>" + footer + "</center>");

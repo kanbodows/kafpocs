@@ -89,6 +89,7 @@
 #include "uvedomlenie.h"
 #include "planumr.h"
 #include "procentovka.h"
+#include "reports/svodotchetgakbally.h"
 namespace Ui {
 class MainWindow;
 }
@@ -301,6 +302,7 @@ private slots:
     void on_action_PlanUmr_triggered();
 
     void on_action_procentovka_triggered();
+    void on_action_svodGak_triggered();
 
 private:
     Ui::MainWindow *ui;
