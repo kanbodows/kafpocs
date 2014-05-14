@@ -39,6 +39,7 @@ AddOrEdit_SpravkaPochas::AddOrEdit_SpravkaPochas(QWidget *parent, bool isEdit, i
     ui->tableWidget->setItemDelegateForColumn(7, new DoubleSpinBoxDelegate(ui->tableWidget));
     ui->tableWidget->setItemDelegateForColumn(8, new DoubleSpinBoxDelegate(ui->tableWidget));
     ui->tableWidget->setItemDelegateForColumn(9, new DoubleSpinBoxDelegate(ui->tableWidget));
+    ui->tableWidget->setItemDelegateForColumn(10, new DoubleSpinBoxDelegate(ui->tableWidget));
     ui->dateEdit->setDate(QDate::currentDate());
     ui->pushButton_print->setEnabled(false);
     if(this->isEdit)
@@ -103,9 +104,9 @@ AddOrEdit_SpravkaPochas::~AddOrEdit_SpravkaPochas()
 
 void AddOrEdit_SpravkaPochas::on_pushButton_ok_clicked()
 {
-    if(ui->tableWidget->rowCount()<=0)
+    if(ui->tableWidget->rowCount()<=1)
     {
-        QMessageBox::warning(this, tr("Ошибка"), tr("Нет курсовых на хранение"));
+        QMessageBox::warning(this, tr("Ошибка"), tr("Должна быть хотя бы одна запись в таблице часов"));
         return;
     }
     if (! dal_main->checkConnection())

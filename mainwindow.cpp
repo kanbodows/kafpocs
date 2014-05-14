@@ -1802,3 +1802,19 @@ void MainWindow::on_action_PlanUmr_triggered()
     PlanUMRform->showMaximized();
     on_pushButton_hide_clicked();
 }
+
+void MainWindow::on_action_svodGak_triggered()
+{
+    SvodOtchetGakBally *form;
+    try
+    {
+        form = new SvodOtchetGakBally(this);
+    }
+    catch(...)
+    {
+        return;
+    }
+    ui->mdiArea->addSubWindow(form);
+    form->showMaximized();
+    on_pushButton_hide_clicked();
+}

@@ -378,6 +378,13 @@ QSqlQuery *Dal_prepodcontrol::getCurrentplanUmr(int zap_id)
     return query;
 }
 
+QSqlQueryModel *Dal_prepodcontrol::getSpravkaPochasDetails(int sparvki_pochas_id)
+{
+    QSqlQueryModel* details = new QSqlQueryModel();
+    details->setQuery("SELECT * FROM spravki_details_viewreport WHERE sparvki_pochas_id = " + QString::number(sparvki_pochas_id));
+    return details;
+}
+
 QSqlQuery *Dal_prepodcontrol::getCurrentMetodichka(int id_metodichka)
 {
     QSqlQuery *query = new QSqlQuery;
@@ -1917,7 +1924,7 @@ QSqlQueryModel *Dal_prepodcontrol::getSpravkiPochasReport(int sotr_id, QDate dat
     QString query = "SELECT * FROM spravki_pochas_viewReport WHERE 1=1 ";
     QSqlQueryModel  *model = new QSqlQueryModel(this);
     if(sotr_id!=0)
-        query.append(" AND sotr_id = " + QString::number(sotr_id));
+        query.append(" AND id_sotr = " + QString::number(sotr_id));
     if(!date.isNull())
         query.append(" AND data_za = '" + date.toString("yyyy-MM") + "'");
     model->setQuery(query);
@@ -1935,7 +1942,7 @@ QSqlQueryModel *Dal_prepodcontrol::getSpravkiPochasReport(int sotr_id, QDate dat
     model->setHeaderData(12,Qt::Horizontal,tr("Язык"));
     model->setHeaderData(13,Qt::Horizontal,tr("Номер справки"));
     model->setHeaderData(14,Qt::Horizontal,tr("Всего"));
-    qDebug()<<query;
+//    qDebug()<<query;
     return model;
 }
 

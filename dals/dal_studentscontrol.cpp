@@ -28,12 +28,14 @@ QSqlQueryModel *Dal_studentsControl::getKonf_sem(int gruppa, QString student, QS
     return model;
 }
 
-QSqlQueryModel *Dal_studentsControl::getGAK(int nomPrik)
+QSqlQueryModel *Dal_studentsControl::getGAK(int nomPrik, int gak_id)
 {
     QSqlQueryModel *GAKsmodel = new QSqlQueryModel(this);
     QString query = "SELECT * FROM GAKView where 1=1 ";
     if(nomPrik != 0)
         query.append(" and gak_nomer_prikaza = " + QString::number(nomPrik));
+    if(gak_id != 0)
+        query.append(" and gak_id = " + QString::number(gak_id));
     GAKsmodel->setQuery(query);
     GAKsmodel->setHeaderData(6,Qt::Horizontal,tr("Дисциплина №1"));
     GAKsmodel->setHeaderData(7,Qt::Horizontal,tr("Дисциплина №2"));
@@ -520,12 +522,12 @@ QSqlQueryModel *Dal_studentsControl::getJurnVzaimopos(QString prov, QDate datest
     return JurnVzaimoposmodel;
 }
 
-QSqlQueryModel *Dal_studentsControl::getNomRapFromSostavGAK()
-{
-    QSqlQueryModel *GodFormKomiss = new QSqlQueryModel(this);
-    GodFormKomiss->setQuery("select `gak-id`,date_format(date,'%Y') from is_sostav_gak");
-    return GodFormKomiss;
-}
+//QSqlQueryModel *Dal_studentsControl::getNomRapFromSostavGAK()
+//{
+//    QSqlQueryModel *GodFormKomiss = new QSqlQueryModel(this);
+//    GodFormKomiss->setQuery("select `gak-id`,date_format(date,'%Y') from is_sostav_gak");
+//    return GodFormKomiss;
+//}
 
 QSqlQueryModel *Dal_studentsControl::getSotrKaf(int sotr_id)
 {
@@ -750,25 +752,49 @@ QSqlQueryModel *Dal_studentsControl::getPractikiSvodReport(int specialnost_id, i
     model->setHeaderData(7,Qt::Horizontal,tr("Кол-во 4-к"));
     model->setHeaderData(8,Qt::Horizontal,tr("Кол-во 3-к"));
     model->setHeaderData(9,Qt::Horizontal,tr("Кол-во 2-к"));
-//    qDebug()<<query;
+    //    qDebug()<<query;
     return model;
 }
 
-QSqlQueryModel *Dal_studentsControl::getGakSvodReport(int specialnost_id, int group_id, int god)
+QSqlQueryModel *Dal_studentsControl::getGakSvodReport(int specialnost_id, int group_id, int gak_id)
 {
     QString query = "";
     QSqlQueryModel *model = new QSqlQueryModel(this);
-    query = "";
-    model->setQuery(query);
+    query = "SELECT `gak_id` as `gak`,\
+            `specialnost_id`, \
+            `id_group` as `gr`, \
+            `spec_name`,  \
+            `g_name`, \
+            COUNT(`sred`) AS `vsego`, \
+            (SELECT COUNT( `sred` ) FROM `gak_bally_view` \
+             WHERE  `nedopusk` = 0 AND `gak_id` = `gak` AND `id_group` = `gr`) AS `dopusheno`, \
+            (SELECT COUNT( `student_id` ) FROM `zdavshie_gak_view` \
+             WHERE  `gak_id` = `gak` AND `id_group` = `gr`) AS `sdali`,\
+            ((SELECT COUNT( `sred` ) FROM `gak_bally_view` \
+              WHERE  `nedopusk` = 0 AND `gak_id` = `gak` AND `id_group` = `gr`) - (SELECT COUNT( `student_id` ) FROM `zdavshie_gak_view` \
+                                                                                   WHERE  `gak_id` = `gak` AND `id_group` = `gr`)) AS `neud`,\
+            (SELECT COUNT( `sred` ) FROM `zdavshie_gak_view` \
+             WHERE  `sred` BETWEEN 61 AND 73 AND `gak_id` = `gak` AND `id_group` = `gr`) AS `ud`, \
+            (SELECT COUNT( `sred` ) FROM `zdavshie_gak_view` \
+             WHERE  `sred` BETWEEN 74 AND 86 AND `gak_id` = `gak` AND `id_group` = `gr`) AS `hor`,\
+            (SELECT COUNT( `sred` ) FROM `zdavshie_gak_view` \
+             WHERE  `sred` >= 87 AND `gak_id` = `gak` AND `id_group` = `gr`) AS `otl`\
+            FROM `gak_bally_view` WHERE 1 = 1 ";
+            if(gak_id != 0 ) query += " AND `gak_id` = " + QString::number(gak_id);
+    if(specialnost_id != 0 ) query += " AND `specialnost_id` = " + QString::number(specialnost_id);
+    if(group_id != 0 ) query += " AND `id_group` = " + QString::number(group_id);
+    query += " GROUP BY `id_group` \
+            ORDER BY `spec_name`, `g_name`";
+            model->setQuery(query);
     model->setHeaderData(3,Qt::Horizontal,tr("Специальность"));
-    model->setHeaderData(5,Qt::Horizontal,tr("Группа"));
+    model->setHeaderData(4,Qt::Horizontal,tr("Группа"));
     model->setHeaderData(5,Qt::Horizontal,tr("Всего студентов"));
-    model->setHeaderData(5,Qt::Horizontal,tr("Допущено"));
-    model->setHeaderData(5,Qt::Horizontal,tr("Сдали"));
-    model->setHeaderData(6,Qt::Horizontal,tr("Кол-во 5-к"));
-    model->setHeaderData(7,Qt::Horizontal,tr("Кол-во 4-к"));
-    model->setHeaderData(8,Qt::Horizontal,tr("Кол-во 3-к"));
-    model->setHeaderData(9,Qt::Horizontal,tr("Кол-во 2-к"));
+    model->setHeaderData(6,Qt::Horizontal,tr("Допущено"));
+    model->setHeaderData(7,Qt::Horizontal,tr("Сдали"));
+    model->setHeaderData(8,Qt::Horizontal,tr("Кол-во 2-к"));
+    model->setHeaderData(9,Qt::Horizontal,tr("Кол-во 3-к"));
+    model->setHeaderData(10,Qt::Horizontal,tr("Кол-во 4-к"));
+    model->setHeaderData(11,Qt::Horizontal,tr("Кол-во 5-к"));
     qDebug()<<query;
     return model;
 }
@@ -1468,7 +1494,9 @@ QSqlQueryModel *Dal_studentsControl::getSostavKom(int komis_id)
 {
     QString query="";
     QSqlQueryModel *SostavKomismodel = new QSqlQueryModel(this);
-    query.append("select * from SostavKomissii where  `gak-id` = " + QString::number(komis_id));
+    query.append("select * from SostavKomissii ");
+    if(komis_id != 0)
+        query.append(" where `gak-id` = " + QString::number(komis_id));
     SostavKomismodel->setQuery(query);
     SostavKomismodel->setHeaderData(8, Qt::Horizontal,tr("Председатель"));
     SostavKomismodel->setHeaderData(9, Qt::Horizontal,tr("Секретарь"));

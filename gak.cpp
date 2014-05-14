@@ -29,7 +29,7 @@ GAK::GAK(QWidget *parent) :
     }
     dal_studentsControl = new Dal_studentsControl(this);
     this->nomer_prikaza = 0;
-    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza);
+    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza, 0);
     ui->tableView_gak->setModel(GAKModel);
     for (int i = 0; i < 10; ++i)
         ui->tableView_gak->setColumnHidden(i, true);
@@ -57,7 +57,7 @@ void GAK::refreshData()
         QMessageBox::warning(this, tr("Ошибка соединения"), tr("Соединение не установлено"));
         return;
     }
-    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza);
+    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza, 0);
     ui->tableView_gak->setModel(GAKModel);
     if(this->vidim==true)
     {
@@ -116,7 +116,7 @@ void GAK::on_pushButton_clear_clicked()
         QMessageBox::warning(this, tr("Ошибка соединения"), tr("Соединение не установлено"));
         return;
     }
-    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza);
+    GAKModel = dal_studentsControl->getGAK(this->nomer_prikaza, 0);
     ui->tableView_gak->setModel(GAKModel);
 }
 
@@ -213,14 +213,14 @@ void GAK::on_tableView_gak_clicked(const QModelIndex &index)
         ui->label_ch2->setText(SostKomGAKModel->record(0).value(7).toString());
         ui->label_ch3->setText(SostKomGAKModel->record(0).value(9).toString());
         ui->label_ch4->setText(SostKomGAKModel->record(0).value(11).toString());
-        ui->label_ch4->setText(SostKomGAKModel->record(0).value(13).toString());
+        ui->label_ch5->setText(SostKomGAKModel->record(0).value(13).toString());
         ui->label_predd->setText(SostKomGAKModel->record(0).value(2).toString());
         ui->label_sekrd->setText(SostKomGAKModel->record(0).value(4).toString());
         ui->label_ch1d->setText(SostKomGAKModel->record(0).value(6).toString());
         ui->label_ch2d->setText(SostKomGAKModel->record(0).value(8).toString());
         ui->label_ch3d->setText(SostKomGAKModel->record(0).value(10).toString());
         ui->label_ch4d->setText(SostKomGAKModel->record(0).value(12).toString());
-        ui->label_ch4d->setText(SostKomGAKModel->record(0).value(14).toString());
+        ui->label_ch5d->setText(SostKomGAKModel->record(0).value(14).toString());
         ui->label_raport->setText(SostKomGAKModel->record(0).value(16).toString());
     }
     ui->tableView_bally->setModel(dal_studentsControl->getGakBally(0, 0, ui->tableView_gak->model()->index(ui->tableView_gak->currentIndex().row(), 0).data().toInt()));

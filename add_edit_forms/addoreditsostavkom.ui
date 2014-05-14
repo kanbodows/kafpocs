@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>298</width>
+    <width>306</width>
     <height>627</height>
    </rect>
   </property>
@@ -192,7 +192,7 @@
          </font>
         </property>
         <property name="displayFormat">
-         <string>dd MMMM yyyy</string>
+         <string>yyyy</string>
         </property>
         <property name="calendarPopup">
          <bool>true</bool>
@@ -219,7 +219,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Дата</string>
+         <string>На какой год составляется комиссия</string>
         </property>
        </widget>
       </item>

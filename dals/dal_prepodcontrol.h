@@ -30,6 +30,7 @@ public:
     QSqlQuery *getCurrentDiscipline(int id_discipline);
     QSqlQuery *getCurrentPublication(int id_publ);
     QSqlQuery *getCurrentplanUmr(int zap_id);
+    QSqlQueryModel*getSpravkaPochasDetails(int sparvki_pochas_id);
     bool editStat (int id_stat, int statAvtor_id, int statSoAvtor_id, QString stat_tema, QDate stat_date);
     bool EditPlanUMR(int id_zap,QString ispoln, QString UMR, QString anotac, double kolvoStr, int tiraj, QString srokIspoln, QString gods);
     bool editSubWork (int subwork_id,int predm,int semes, QDate dates, int prepod);

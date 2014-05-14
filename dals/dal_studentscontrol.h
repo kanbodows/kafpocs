@@ -9,7 +9,7 @@ class Dal_studentsControl : public DAL_main
 public:
     explicit Dal_studentsControl(QObject *parent = 0);
     QSqlQueryModel *getKonf_sem(int gruppa, QString student, QString theme);
-    QSqlQueryModel *getGAK(int nomPrik);
+    QSqlQueryModel *getGAK(int nomPrik, int gak_id);
     QSqlQuery *getCurrentKonf_sem(int id_konf);
     QSqlQuery *getCurrentPracWork(int id_PracWork);
     QSqlQueryModel *getObchejitie(int gruppa, QString student);
@@ -42,7 +42,7 @@ public:
     QSqlQueryModel *getFormaObuch();
     QSqlQueryModel *getFormaOplaty();
     QSqlQueryModel *getJurnVzaimopos(QString prov, QDate datestart, QDate dateend);
-    QSqlQueryModel *getNomRapFromSostavGAK();
+//    QSqlQueryModel *getNomRapFromSostavGAK();
     QSqlQueryModel *getSotrKaf(int sotr_id);
     QSqlQueryModel *getDiscipl();
     QSqlQueryModel *getKafedry();
@@ -118,7 +118,7 @@ public:
     QSqlQueryModel *getPracWorkReport(int specialnost_id, int group_id, QDate dateStart, QDate dateEnd, int tip_prac);
     QSqlQueryModel *getStudentsReport(int specialnost_id, int group_id, QDate dateStart, QDate dateEnd, int formaObuch_id, int formaOplaty_id);
     QSqlQueryModel *getPractikiSvodReport(int specialnost_id, int tipPrac, QDate dateStart, QDate dateEnd);
-    QSqlQueryModel *getGakSvodReport(int specialnost_id, int group_id, int god);
+    QSqlQueryModel *getGakSvodReport(int specialnost_id, int group_id, int gak_id);
 private:
 };
 

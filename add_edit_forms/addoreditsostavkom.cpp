@@ -25,45 +25,31 @@ AddOrEditSostavKom::AddOrEditSostavKom(QWidget *parent, int select, int id, int 
     ui->dateEdit->setDate(QDate::currentDate());
     ui->label_error->setVisible(false);
     dal_prepodcontrol = new Dal_prepodcontrol(this);
-    QSqlQueryModel *comboPredsed = new QSqlQueryModel(this);
-    comboPredsed = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Predsed->setModel(comboPredsed);
+    ui->comboBox_Predsed->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Predsed->setModelColumn(1);
     ui->comboBox_Predsed->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboSecr = new QSqlQueryModel(this);
-    comboSecr = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Secr->setModel(comboSecr);
+    ui->comboBox_Secr->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Secr->setModelColumn(1);
     ui->comboBox_Secr->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch1 = new QSqlQueryModel(this);
-    comboch1 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch1->setModel(comboch1);
+    ui->comboBox_Ch1->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch1->setModelColumn(1);
     ui->comboBox_Ch1->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch2 = new QSqlQueryModel(this);
-    comboch2 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch2->setModel(comboch2);
+    ui->comboBox_Ch2->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch2->setModelColumn(1);
     ui->comboBox_Ch2->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch3 = new QSqlQueryModel(this);
-    comboch3 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch3->setModel(comboch3);
+    ui->comboBox_Ch3->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch3->setModelColumn(1);
     ui->comboBox_Ch3->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch4 = new QSqlQueryModel(this);
-    comboch4 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch4->setModel(comboch4);
+    ui->comboBox_Ch4->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch4->setModelColumn(1);
     ui->comboBox_Ch4->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch5 = new QSqlQueryModel(this);
-    comboch5 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch5->setModel(comboch5);
+    ui->comboBox_Ch5->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch5->setModelColumn(1);
     ui->comboBox_Ch5->setCurrentIndex(-1);
 
@@ -79,109 +65,25 @@ AddOrEditSostavKom::AddOrEditSostavKom(QWidget *parent, int select, int id, int 
         this->setWindowTitle(tr("Редактирование записи"));
 
         this->rec_id = id;
-        int ids_pred;
-        int ids_secr;
-        int ids_ch1;
-        int ids_ch2;
-        int ids_ch3;
-        int ids_ch4;
-        int ids_ch5;
-
-
         QSqlQuery *query = new QSqlQuery;
         query = dal_prepodcontrol->getCurrentSostavGAK(this->rec_id);
-
-        ids_pred = query->value(1).toInt();
-        for (int j = 0; j < ui->comboBox_Predsed->count(); j++)
-        {
-            if (comboPredsed->index(j, 0).data().toInt() == ids_pred)
-            {
-                ui->comboBox_Predsed->setCurrentIndex(j);
-                ui->comboBox_Predsed->view()->setCurrentIndex(comboPredsed->index(j, 0));
-                break;
-            }
-        }
-
-
-        ids_secr = query->value(2).toInt();
-        for (int j = 0; j < ui->comboBox_Secr->count(); j++)
-        {
-            if (comboSecr->index(j, 0).data().toInt() == ids_secr)
-            {
-                ui->comboBox_Secr->setCurrentIndex(j);
-                ui->comboBox_Secr->view()->setCurrentIndex(comboSecr->index(j, 0));
-                break;
-            }
-        }
-
-        ids_ch1 = query->value(3).toInt();
-        for (int j = 0; j < ui->comboBox_Ch1->count(); j++)
-        {
-            if (comboch1->index(j, 0).data().toInt() == ids_ch1)
-            {
-                ui->comboBox_Ch1->setCurrentIndex(j);
-                ui->comboBox_Ch1->view()->setCurrentIndex(comboch1->index(j, 0));
-                break;
-            }
-        }
-
-        ids_ch2 = query->value(4).toInt();
-        for (int j = 0; j < ui->comboBox_Ch2->count(); j++)
-        {
-            if (comboch2->index(j, 0).data().toInt() == ids_ch2)
-            {
-                ui->comboBox_Ch2->setCurrentIndex(j);
-                ui->comboBox_Ch2->view()->setCurrentIndex(comboch2->index(j, 0));
-                break;
-            }
-        }
-
-        ids_ch3 = query->value(5).toInt();
-        for (int j = 0; j < ui->comboBox_Ch3->count(); j++)
-        {
-            if (comboch3->index(j, 0).data().toInt() == ids_ch3)
-            {
-                ui->comboBox_Ch3->setCurrentIndex(j);
-                ui->comboBox_Ch3->view()->setCurrentIndex(comboch3->index(j, 0));
-                break;
-            }
-        }
-
-        ids_ch4 = query->value(6).toInt();
-        for (int j = 0; j < ui->comboBox_Ch4->count(); j++)
-        {
-            if (comboch4->index(j, 0).data().toInt() == ids_ch4)
-            {
-                ui->comboBox_Ch4->setCurrentIndex(j);
-                ui->comboBox_Ch4->view()->setCurrentIndex(comboch4->index(j, 0));
-                break;
-            }
-        }
-
-        ids_ch5 = query->value(7).toInt();
-        for (int j = 0; j < ui->comboBox_Ch5->count(); j++)
-        {
-            if (comboch5->index(j, 0).data().toInt() == ids_ch5)
-            {
-                ui->comboBox_Ch5->setCurrentIndex(j);
-                ui->comboBox_Ch5->view()->setCurrentIndex(comboch5->index(j, 0));
-                break;
-            }
-        }
-
-        this->preds = ids_pred;
-        this->secretar = ids_secr;
-        this->chl1 = ids_ch1;
-        this->chl2 = ids_ch2;
-        this->chl3 = ids_ch3;
-        this->chl4 = ids_ch4;
-        this->chl5 = ids_ch5;
-
-
+        this->preds = query->value(17).toInt();
+        ui->comboBox_Predsed->setCurrentText(query->value(1).toString());
+        this->secretar = query->value(18).toInt();
+        ui->comboBox_Secr->setCurrentText(query->value(3).toString());
+        this->chl1 = query->value(19).toInt();
+        ui->comboBox_Ch1->setCurrentText(query->value(5).toString());
+        this->chl2 = query->value(20).toInt();
+        ui->comboBox_Ch2->setCurrentText(query->value(7).toString());
+        this->chl3 = query->value(21).toInt();
+        ui->comboBox_Ch3->setCurrentText(query->value(9).toString());
+        this->chl4 = query->value(22).toInt();
+        ui->comboBox_Ch4->setCurrentText(query->value(11).toString());
+        this->chl5 = query->value(23).toInt();
+        ui->comboBox_Ch5->setCurrentText(query->value(13).toString());
         ui->dateEdit->setDate(query->value(15).toDate());
         ui->lineEdit_nomRaport->setText(query->value(16).toString());
     }
-
 }
 
 AddOrEditSostavKom::~AddOrEditSostavKom()
@@ -247,45 +149,31 @@ void AddOrEditSostavKom::on_pushButton_begin_clicked()
         return;
     }
     dal_prepodcontrol = new Dal_prepodcontrol(this);
-    QSqlQueryModel *comboPredsed = new QSqlQueryModel(this);
-    comboPredsed = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Predsed->setModel(comboPredsed);
+    ui->comboBox_Predsed->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Predsed->setModelColumn(1);
     ui->comboBox_Predsed->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboSecr = new QSqlQueryModel(this);
-    comboSecr = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Secr->setModel(comboSecr);
+    ui->comboBox_Secr->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Secr->setModelColumn(1);
     ui->comboBox_Secr->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch1 = new QSqlQueryModel(this);
-    comboch1 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch1->setModel(comboch1);
+    ui->comboBox_Ch1->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch1->setModelColumn(1);
     ui->comboBox_Ch1->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch2 = new QSqlQueryModel(this);
-    comboch2 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch2->setModel(comboch2);
+    ui->comboBox_Ch2->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch2->setModelColumn(1);
     ui->comboBox_Ch2->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch3 = new QSqlQueryModel(this);
-    comboch3 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch3->setModel(comboch3);
+    ui->comboBox_Ch3->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch3->setModelColumn(1);
     ui->comboBox_Ch3->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch4 = new QSqlQueryModel(this);
-    comboch4 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch4->setModel(comboch4);
+    ui->comboBox_Ch4->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch4->setModelColumn(1);
     ui->comboBox_Ch4->setCurrentIndex(-1);
 
-    QSqlQueryModel *comboch5 = new QSqlQueryModel(this);
-    comboch5 = dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5);
-    ui->comboBox_Ch5->setModel(comboch5);
+    ui->comboBox_Ch5->setModel(dal_prepodcontrol->getUchastnikiKom(this->preds, this->secretar, this->chl1, this->chl2, this->chl3, this->chl4, this->chl5));
     ui->comboBox_Ch5->setModelColumn(1);
     ui->comboBox_Ch5->setCurrentIndex(-1);
 
@@ -525,17 +413,15 @@ void AddOrEditSostavKom::on_pushButton_ok_clicked()
                                                 this->chl5,\
                                                 ui->dateEdit->date(),\
                                                 ui->lineEdit_nomRaport->text().toInt()))
-            {
-                this->close();
+            {               
                 QMessageBox::information(this, tr("Информация"), tr("Запись успешно добавлена"));
+                this->close();
             }
             else
-            {
-                this->close();
+            {               
                 QMessageBox::warning(this, tr("Ошибка"), tr("Данные не были добавлены в базу данных"));
             }
         }
-
         else
         {
             if (! dal_main->checkConnection())
@@ -554,17 +440,15 @@ void AddOrEditSostavKom::on_pushButton_ok_clicked()
                                                  ui->dateEdit->date(),\
                                                  ui->lineEdit_nomRaport->text().toInt()))
             {
-                this->close();
                 QMessageBox::information(this, tr("Информация"), tr("Данные успешно отредактированы"));
+                this->close();                
             }
             else
             {
-                this->close();
                 QMessageBox::information(this, tr("Информация"), tr("Данные не были изменены"));
             }
         }
     }
-
 }
 
 void AddOrEditSostavKom::on_pushButtonCancel_clicked()

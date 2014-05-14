@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>755</width>
-    <height>290</height>
+    <height>306</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,6 +175,59 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="pushButton_showReport">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Сгенерировать отчет</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resourses.qrc">
+          <normaloff>:/img/img/generate.png</normaloff>:/img/img/generate.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="pushButton">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>График</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resourses.qrc">
+          <normaloff>:/img/img/chart.png</normaloff>:/img/img/chart.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QCheckBox" name="checkBox_detalno">
+        <property name="text">
+         <string>Детально </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="pushButton_set">
+        <property name="text">
+         <string>Настройки полей</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resourses.qrc">
+          <normaloff>:/img/img/1downarrow.png</normaloff>:/img/img/1downarrow.png</iconset>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QDateEdit" name="dateEdit_startReport">
         <property name="sizePolicy">
@@ -242,66 +295,20 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QComboBox" name="comboBox_sotr"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="pushButton_set">
-        <property name="text">
-         <string>Настройки полей</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resourses.qrc">
-          <normaloff>:/img/img/1downarrow.png</normaloff>:/img/img/1downarrow.png</iconset>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="comboBox_sotr">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="pushButton_showReport">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Сгенерировать отчет</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resourses.qrc">
-          <normaloff>:/img/img/generate.png</normaloff>:/img/img/generate.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
+      <item row="0" column="1" colspan="2">
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>Сотрудник</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QPushButton" name="pushButton">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>График</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resourses.qrc">
-          <normaloff>:/img/img/chart.png</normaloff>:/img/img/chart.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="checkBox_detalno">
-        <property name="text">
-         <string>Детально </string>
         </property>
        </widget>
       </item>

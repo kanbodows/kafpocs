@@ -25,10 +25,14 @@ SvodOtchetGakBally::SvodOtchetGakBally(QWidget *parent) :
     }
     dal_studentsControl = new Dal_studentsControl(this);
     plots = new Plots(this);
+    css = new Styles;
     ui->tabWidget->setCurrentIndex(0);
     ui->comboBox_spec->setModel(dal_studentsControl->getSpec());
     ui->comboBox_spec->setModelColumn(1);
     ui->comboBox_spec->setCurrentIndex(-1);
+    ui->comboBox_gak->setModel(dal_studentsControl->getGAK(0, 0));
+    ui->comboBox_gak->setModelColumn(13);
+    ui->comboBox_gak->setCurrentIndex(-1);
     ui->comboBox_group->setEditable(false);
 }
 
@@ -40,38 +44,85 @@ SvodOtchetGakBally::~SvodOtchetGakBally()
 
 void SvodOtchetGakBally::printDocument(QPrinter *printer)
 {
-    body->print(printer);
+    toPrint->print(printer);
 }
 
 void SvodOtchetGakBally::on_pushButton_showReport_clicked()
 {
+    if(ui->comboBox_gak->currentIndex() ==-1 || ui->comboBox_spec->currentIndex() ==-1)
+    {
+        QMessageBox::warning(this, tr("Ошибка"), tr("Выберите год проведения ГАК и специальность"));
+        return;
+    }
     MyPrint myPrint;
     RowList list;
-    list[3] = tr("Специальность");
-    list[5] = tr("Группа");
+    list[4] = tr("Группа");
     list[5] = tr("Всего студентов");
-    list[5] = tr("Допущено");
-    list[5] = tr("Сдали");
-    list[6] = tr("Кол-во 5-к");
-    list[7] = tr("Кол-во 4-к");
-    list[8] = tr("Кол-во 3-к");
-    list[9] = tr("Кол-во 2-к");
+    list[6] = tr("Допущено к ГЭ");
+    list[7] = tr("Сдали ГЭ");
+    list[8] = tr("Неуд-но");
+    list[9] = tr("Удов-но");
+    list[10] = tr("Хорошо");
+    list[11] = tr("Отлично");
+    QSqlQueryModel* gakmodel = dal_studentsControl->getGAK(0, ui->comboBox_gak->model()->index(ui->comboBox_gak->currentIndex(), 0).data().toInt());
+    QSqlQueryModel* SostKomGAKModel = dal_studentsControl->getSostavKom(gakmodel->record(0).value(1).toInt());
     QString header = this->windowTitle() + "<br><br>" \
-            "<H3>На период с " + ui->dateEdit_start->date().toString("dd-MM-yyyy") + "</H3>";
-    body = myPrint.print(dal_studentsControl->getGakSvodReport(ui->comboBox_spec->model()->index(ui->comboBox_spec->currentIndex(),0).data().toInt(),
-                                                               ui->comboBox_group->model()->index(ui->comboBox_group->currentIndex(),0).data().toInt(),
-                                                               ui->dateEdit_start->date().toString("yyyy").toInt()),
-                         list,
-                         header, "", 1);
+            "<H3>На период с " + ui->comboBox_gak->model()->index(ui->comboBox_gak->currentIndex(), 13).data().toString() + "</H3>";
+    QString body;
+    body.append("<html><head>"
+                "<link rel='stylesheet' type='text/css' href='format.css'>"
+                "</head><body>"
+                "<center><H2>" + header + "</H2></center><br>"
+                "<p>ГАК по специальности <b>\"" + ui->comboBox_spec->model()->index(ui->comboBox_spec->currentIndex(),1).data().toString() + "\"</b> утвержден приказом по КГТУ № "
+                + gakmodel->record(0).value(12).toString() + " в следующем составе:<br>"
+                "Председатель ГАК: " + SostKomGAKModel->record(0).value(1).toString() + " - " + SostKomGAKModel->record(0).value(2).toString() + "<br>"
+                "Зам председателя: " + SostKomGAKModel->record(0).value(3).toString() + " - " + SostKomGAKModel->record(0).value(4).toString() + "<br>"
+                "Члены комиссии:<br>"
+                "3. " + SostKomGAKModel->record(0).value(5).toString() + " - " + SostKomGAKModel->record(0).value(6).toString() + "<br>"
+                "4. " + SostKomGAKModel->record(0).value(7).toString() + " - " + SostKomGAKModel->record(0).value(8).toString() + "<br>"
+                "5. " + SostKomGAKModel->record(0).value(9).toString() + " - " + SostKomGAKModel->record(0).value(10).toString() + "<br>"
+                "6. " + SostKomGAKModel->record(0).value(11).toString() + " - " + SostKomGAKModel->record(0).value(12).toString() + "<br>"
+                "7. " + SostKomGAKModel->record(0).value(13).toString() + " - " + SostKomGAKModel->record(0).value(14).toString() + "<br>"
+                " Результаты сдачи ГЭ проведенного " + gakmodel->record(0).value(10).toDate().toString("dd-MM-yyyy") + " приведены ниже в таблице 1 <br>"
+                "</p>");
+    body.append(myPrint.printOnlyTable(dal_studentsControl->getGakSvodReport(ui->comboBox_spec->model()->index(ui->comboBox_spec->currentIndex(),0).data().toInt(),
+                                                                             ui->comboBox_group->model()->index(ui->comboBox_group->currentIndex(),0).data().toInt(),
+                                                                             ui->comboBox_gak->model()->index(ui->comboBox_gak->currentIndex(),0).data().toInt()),
+                                       list, 0));
+
+    body.append("<br><br><p><b>Список предметов, вынесенных на Государственный экзамен:</b><br>"
+                "1. " + gakmodel->record(0).value(6).toString() + "<br>"
+                "2. " + gakmodel->record(0).value(7).toString() + "<br>"
+                "3. " + gakmodel->record(0).value(8).toString() + "<br>"
+                "4. " + gakmodel->record(0).value(9).toString() + "<br></p>");
+    RowList list2;
+    list2[5] = tr("Группа");
+    list2[6] = tr("Студент");
+    list2[7] = gakmodel->record(0).value(6).toString();
+    list2[8] = gakmodel->record(0).value(7).toString();
+    list2[9] = gakmodel->record(0).value(8).toString();
+    list2[10] = gakmodel->record(0).value(9).toString();
+    list2[12] = tr("Средняя оценка");
+
+    body.append(myPrint.printOnlyTable(dal_studentsControl->getGakBally(ui->comboBox_spec->model()->index(ui->comboBox_spec->currentIndex(),0).data().toInt(),
+                                                                        ui->comboBox_group->model()->index(ui->comboBox_group->currentIndex(),0).data().toInt(),
+                                                                        ui->comboBox_gak->model()->index(ui->comboBox_gak->currentIndex(),0).data().toInt()),
+                                       list2, 1));
+    body.append("</body></html>");
+    QTextDocument *toPrint2 = new QTextDocument;
+    toPrint2->addResource(QTextDocument::StyleSheetResource, QUrl( "format.css" ), css->reportCss);
+    toPrint2->setHtml(body);
+    toPrint = toPrint2;
+
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName("file.pdf");
     QPrintPreviewDialog *preview = new QPrintPreviewDialog (&printer);
     preview->setAttribute(Qt::WA_DeleteOnClose);
     preview->setWindowFlags(Qt::Widget);
-    QList<QPrintPreviewWidget*> list2 = preview->findChildren<QPrintPreviewWidget*>();
-    if(!list2.isEmpty())
-        list2.first()->setZoomMode(QPrintPreviewWidget::FitToWidth);
+    QList<QPrintPreviewWidget*> list3 = preview->findChildren<QPrintPreviewWidget*>();
+    if(!list3.isEmpty())
+        list3.first()->setZoomMode(QPrintPreviewWidget::FitToWidth);
     connect(preview, SIGNAL(paintRequested(QPrinter *)), SLOT(printDocument(QPrinter *)));
     QLayoutItem* item;
     while ((item = ui->verticalLayout->takeAt(0) ) != NULL )

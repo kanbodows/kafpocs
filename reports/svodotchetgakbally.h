@@ -9,6 +9,7 @@
 #include "delegates/qcustomplot.h"
 #include <QSqlQuery>
 #include "plots.h"
+#include "styles.h"
 
 extern DAL_main  *dal_main;
 namespace Ui {
@@ -38,7 +39,8 @@ private:
     Ui::SvodOtchetGakBally *ui;
     Dal_studentsControl *dal_studentsControl;
     Plots *plots;
-    QTextDocument* body;
+    QTextDocument* toPrint;
+    Styles *css;
 };
 
 #endif // SvodOtchetGakBally_H

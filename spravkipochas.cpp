@@ -49,7 +49,6 @@ SpravkiPochas::SpravkiPochas(QWidget *parent) :
     ui->tableView->setColumnHidden(17,true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
-    //    ui->tableView->setItemDelegateForColumn(9, new dateDelegate(ui->tableView));
     ui->groupBox_search->setVisible(false);
     ui->label_result->setVisible(false);
     ui->label_naideno->setVisible(false);
